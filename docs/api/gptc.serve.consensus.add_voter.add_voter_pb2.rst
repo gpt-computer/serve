@@ -1,0 +1,7 @@
+gptc.serve.consensus.add\_voter.add\_voter\_pb2 module
+======================================================
+
+.. automodule:: gptc.serve.consensus.add_voter.add_voter_pb2
+   :members:
+   :undoc-members:
+   :show-inheritance:
