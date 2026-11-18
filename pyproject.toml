@@ -58,6 +58,9 @@ default-groups = ["dev"]
 exclude-dependencies = ["gptc-hubble-sdk"]
 constraint-dependencies = ["docarray<0.22", "pydantic<2"]
 
+[tool.uv.sources]
+gptc-hubble-sdk = { git = "https://github.com/gpt-computer/gptc-hubble-sdk" }
+
 [tool.black]
 line-length = 88
 skip-string-normalization = true

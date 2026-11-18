@@ -35,8 +35,8 @@ Two Docker images pin the compiler/plugin versions:
 
 | Dockerfile | Image | protoc | grpc plugin | Generates |
 |---|---|---|---|---|
-| `Dockerfiles/protogen.Dockerfile` | `gptcomputer/protogen` | 3.19.1 | grpc v1.46.0 | `docarray_v1/` → `pb2/` |
-| `Dockerfiles/protogen-3.21.Dockerfile` | `gptcomputer/protogen-3.21` | 21.5 | grpc v1.48.0 | `docarray_v2/` → `pb/` |
+| `docker/protogen.Dockerfile` | `gptcomputer/protogen` | 3.19.1 | grpc v1.46.0 | `docarray_v1/` → `pb2/` |
+| `docker/protogen-3.21.Dockerfile` | `gptcomputer/protogen-3.21` | 21.5 | grpc v1.48.0 | `docarray_v2/` → `pb/` |
 
 Both images:
 - Build from `python:3.10-slim-bookworm`
@@ -47,7 +47,7 @@ Generation commands (from `gptc/proto/README.md`):
 
 ```bash
 # DocArray v1 (protobuf < 3.19)
-docker build -f Dockerfiles/protogen.Dockerfile -t gptcomputer/protogen:local .
+docker build -f docker/protogen.Dockerfile -t gptcomputer/protogen:local .
 docker run -it -v $(pwd)/gptc/proto/docarray_v1:/gptc/proto gptcomputer/protogen:local
 docker run -it -v $(pwd)/gptc/proto/docarray_v1:/gptc/proto gptcomputer/protogen-3.21:local
 
@@ -73,7 +73,7 @@ docker run -it -v $(pwd)/gptc/proto/docarray_v2:/gptc/proto gptcomputer/protogen
 ## Rules
 
 1. Treat `gptc/proto/docarray_v1/` and `gptc/proto/docarray_v2/` as the canonical Python `.proto` sources. Every other copy (`docs/proto/`) is documentation-only output.
-2. Pin protoc/plugin versions via the `Dockerfiles/protogen*.Dockerfile` images; do not regenerate with locally installed `protoc` of arbitrary version.
+2. Pin protoc/plugin versions via the `docker/protogen*.Dockerfile` images; do not regenerate with locally installed `protoc` of arbitrary version.
 3. Keep `docs/proto/` sources synchronized with `gptc/proto/` sources; generated docs bindings may be regenerated for publishing but must not drift.
 4. Add CI that regenerates `gptc/proto/docarray_v*` bindings with the pinned images and fails on uncommitted diff (see PR #4 completion check).
 5. Resolve the orphaned top-level `gptc/proto/gptc_pb2.py` / `gptc_pb2_grpc.py` — either assign them to a canonical version or remove them once runtime import usage is confirmed.

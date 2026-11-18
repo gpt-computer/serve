@@ -12,9 +12,9 @@ set -e
 # finally, set back owner of the generated files using: sudo chown -R $(id -u ${USER}):$(id -g ${USER}) ./gptc/proto
 
 # The protogen docker image can also be build locally using:
-# docker build -f Dockerfiles/protogen.Dockerfile -t gptcomputer/protogen:local .
+# docker build -f docker/protogen.Dockerfile -t gptcomputer/protogen:local .
 # or
-# docker build -f Dockerfiles/protogen-3.21.Dockerfile -t gptcomputer/protogen-3.21:local .
+# docker build -f docker/protogen-3.21.Dockerfile -t gptcomputer/protogen-3.21:local .
 
 SRC_DIR=./
 SRC_NAME="add_voter.proto"

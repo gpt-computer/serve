@@ -215,7 +215,7 @@ We don't enforce naming of PRs and branches, but we recommend you follow the sam
 You need to build a local docker image tagged 'gptcomputer/gptc:test-pip' for all the tests to run as in the CI, via:
 
 ```bash
-docker build --build-arg PIP_TAG="[devel]" -f ${PATH_TO_GPTC}/Dockerfiles/pip.Dockerfile -t gptcomputer/gptc:test-pip ${PATH_TO_GPTC}
+docker build --build-arg PIP_TAG="[devel]" -f ${PATH_TO_GPTC}/docker/pip.Dockerfile -t gptcomputer/gptc:test-pip ${PATH_TO_GPTC}
 ```
 
 Locally you can do unittest via:

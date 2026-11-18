@@ -32,7 +32,7 @@ which gptc
 A local docker version needs to be built to correctly re-build gptc proto files if modified.
 
 ```shell
-docker build -f Dockerfiles/protogen.Dockerfile -t proto/gptc-raft-proto .
+docker build -f docker/protogen.Dockerfile -t proto/gptc-raft-proto .
 ```
 
 ### Generate Proto for Python

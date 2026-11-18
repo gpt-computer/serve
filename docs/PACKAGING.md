@@ -23,7 +23,7 @@ repository structure improvement plan.
 | Exported pip requirements | `requirements.txt` | Single `.` — installs the local project |
 | Documentation build deps | `docs/requirements.txt` | Separate audience; pinned for reproducible docs builds |
 | Conda packaging | `conda/meta.yaml` | Three outputs (`gptc-core`, `gptc-perf`, `gptc`); version hardcoded, must sync with `gptc/__init__.py` |
-| Docker images | `Dockerfiles/*.Dockerfile` | Shared project images; test-specific Dockerfiles live next to their fixtures |
+| Docker images | `docker/*.Dockerfile` | Shared project images; test-specific Dockerfiles live next to their fixtures |
 
 ## Duplicate / generated files
 

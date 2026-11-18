@@ -65,6 +65,7 @@ The built `jraft.abi3.so` is bundled inside the `gptc` wheel (not shipped as a s
 
 ```python
 import jraft
+
 ...
 persisted_address = jraft.get_configuration(raft_id, raft_dir)
 ...

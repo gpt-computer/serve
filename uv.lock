@@ -2826,10 +2826,10 @@ requires-dist = [
     { name = "flaky", marker = "extra == 'all'" },
     { name = "flaky", marker = "extra == 'flaky'" },
     { name = "flaky", marker = "extra == 'test'" },
-    { name = "gptc-hubble-sdk", specifier = ">=0.30.4" },
-    { name = "gptc-hubble-sdk", marker = "extra == 'all'", specifier = ">=0.30.4" },
-    { name = "gptc-hubble-sdk", marker = "extra == 'core'", specifier = ">=0.30.4" },
-    { name = "gptc-hubble-sdk", marker = "extra == 'gptc-hubble-sdk'", specifier = ">=0.30.4" },
+    { name = "gptc-hubble-sdk", git = "https://github.com/gpt-computer/gptc-hubble-sdk" },
+    { name = "gptc-hubble-sdk", marker = "extra == 'all'", git = "https://github.com/gpt-computer/gptc-hubble-sdk" },
+    { name = "gptc-hubble-sdk", marker = "extra == 'core'", git = "https://github.com/gpt-computer/gptc-hubble-sdk" },
+    { name = "gptc-hubble-sdk", marker = "extra == 'gptc-hubble-sdk'", git = "https://github.com/gpt-computer/gptc-hubble-sdk" },
     { name = "grpcio", specifier = ">=1.46.0,<=1.68.0" },
     { name = "grpcio", marker = "extra == 'all'", specifier = ">=1.46.0,<=1.68.0" },
     { name = "grpcio", marker = "extra == 'core'", specifier = ">=1.46.0,<=1.68.0" },
@@ -3029,7 +3029,7 @@ requires-dist = [
     { name = "websockets", marker = "extra == 'standard'" },
     { name = "websockets", marker = "extra == 'websockets'" },
 ]
-provides-extras = ["core", "numpy", "protobuf", "grpcio", "grpcio-reflection", "grpcio-health-checking", "pyyaml", "packaging", "docarray", "gptc-hubble-sdk", "jcloud", "opentelemetry-api", "opentelemetry-instrumentation-grpc", "perf", "standard", "devel", "uvloop", "prometheus-client", "opentelemetry-sdk", "opentelemetry-exporter-otlp", "opentelemetry-exporter-prometheus", "opentelemetry-instrumentation-aiohttp-client", "opentelemetry-instrumentation-fastapi", "opentelemetry-exporter-otlp-proto-grpc", "fastapi", "uvicorn", "docker", "pathspec", "filelock", "requests", "websockets", "pydantic", "python-multipart", "aiofiles", "aiohttp", "test", "scipy", "pillow", "pytest", "pytest-timeout", "pytest-mock", "pytest-cov", "coverage", "pytest-repeat", "pytest-asyncio", "pytest-reraise", "flaky", "mock", "requests-mock", "pytest-custom-exit-code", "black", "kubernetes", "pytest-kind", "pytest-lazy-fixture", "torch", "cicd", "psutil", "strawberry-graphql", "sgqlc", "bs4", "jsonschema", "portforward", "tensorflow", "opentelemetry-test-utils", "prometheus-api-client", "watchfiles", "urllib3", "all"]
+provides-extras = ["core", "numpy", "protobuf", "grpcio", "grpcio-reflection", "grpcio-health-checking", "pyyaml", "packaging", "docarray", "gptc-hubble-sdk", "jcloud", "opentelemetry-api", "opentelemetry-instrumentation-grpc", "devel", "standard", "perf", "uvloop", "prometheus-client", "opentelemetry-sdk", "opentelemetry-exporter-otlp", "opentelemetry-exporter-prometheus", "opentelemetry-instrumentation-aiohttp-client", "opentelemetry-instrumentation-fastapi", "opentelemetry-exporter-otlp-proto-grpc", "fastapi", "uvicorn", "docker", "pathspec", "filelock", "requests", "websockets", "pydantic", "python-multipart", "aiofiles", "aiohttp", "test", "scipy", "pillow", "pytest", "pytest-timeout", "pytest-mock", "pytest-cov", "coverage", "pytest-repeat", "pytest-asyncio", "pytest-reraise", "flaky", "mock", "requests-mock", "pytest-custom-exit-code", "black", "kubernetes", "pytest-kind", "pytest-lazy-fixture", "cicd", "torch", "psutil", "strawberry-graphql", "sgqlc", "bs4", "jsonschema", "portforward", "tensorflow", "opentelemetry-test-utils", "prometheus-api-client", "watchfiles", "urllib3", "all"]
 
 [package.metadata.requires-dev]
 cicd = [

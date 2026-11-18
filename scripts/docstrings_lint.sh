@@ -24,8 +24,7 @@ for changed_file in $CHANGED_FILES; do
     gptc/resources/* | \
     gptc/serve/consensus/add_voter/* | \
     docs/* | \
-    setup.py | \
-    fastentrypoints.py)
+    setup.py)
     ;;*)
       echo keeping ${changed_file}
       arrVar+=(${changed_file})

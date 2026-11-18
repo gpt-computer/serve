@@ -18,13 +18,13 @@ this guide explain how to do it properly.
 
 
 ``` cmd
-docker build -f Dockerfiles/protogen.Dockerfile -t gptcomputer/protogen:local .
+docker build -f docker/protogen.Dockerfile -t gptcomputer/protogen:local .
 ```
 
 This build the docker image that will be used to generate the python code from the proto for proto **before** 3.19
 
 ``` cmd
-docker build -f Dockerfiles/protogen-3.21.Dockerfile -t gptcomputer/protogen-3.21:local .
+docker build -f docker/protogen-3.21.Dockerfile -t gptcomputer/protogen-3.21:local .
 ```
 
 This build the docker image that will be used to generate the python code from the proto for proto **after* 3.19

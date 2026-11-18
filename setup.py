@@ -22,6 +22,7 @@ if sys.version_info < (3, 8, 0):
 
 if (3, 7, 0) <= sys.version_info < (3, 8, 0):
     # https://github.com/pypa/setuptools/issues/926#issuecomment-294369342
+    sys.path.insert(0, 'docs')
     try:
         import fastentrypoints
     except ImportError:
