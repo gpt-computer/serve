@@ -1,5 +1,6 @@
 recursive-include docarray/resources *
 recursive-include gptc/resources *
+recursive-include logo *
 recursive-include gptc/serve/consensus *
 include extra-requirements.txt
 include docs/fastentrypoints.py
