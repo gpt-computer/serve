@@ -1,9 +1,10 @@
-import pytest
 from typing import List
-from docarray.documents import ImageDoc, TextDoc
-from docarray import BaseDoc, DocList
 
-from gptc import Deployment, Executor, Flow, requests, dynamic_batching
+import pytest
+from docarray import BaseDoc, DocList
+from docarray.documents import ImageDoc, TextDoc
+
+from gptc import Deployment, Executor, Flow, dynamic_batching, requests
 from gptc.excepts import RuntimeFailToStart
 
 

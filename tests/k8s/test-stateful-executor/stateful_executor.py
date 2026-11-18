@@ -1,5 +1,6 @@
 import os
-from gptc import Executor, requests, DocumentArray
+
+from gptc import DocumentArray, Executor, requests
 
 
 class StatefulExecutor(Executor):

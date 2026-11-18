@@ -5,8 +5,8 @@ import time
 from typing import Dict
 
 import pytest
-
 from docarray import Document, DocumentArray
+
 from gptc.helper import random_port
 from gptc.parsers import set_gateway_parser
 from gptc.serve import networking

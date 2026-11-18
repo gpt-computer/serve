@@ -1,6 +1,7 @@
 import grpc
-from gptc.serve.consensus.add_voter.add_voter_pb2_grpc import RaftAdminStub
+
 from gptc.serve.consensus.add_voter.add_voter_pb2 import AddVoterRequest
+from gptc.serve.consensus.add_voter.add_voter_pb2_grpc import RaftAdminStub
 
 
 def call_add_voter(target, replica_id, voter_address):

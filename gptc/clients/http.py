@@ -1,3 +1,5 @@
+import asyncio
+
 from gptc.clients.base.http import HTTPBaseClient
 from gptc.clients.mixin import (
     AsyncHealthCheckMixin,
@@ -9,7 +11,6 @@ from gptc.clients.mixin import (
     PostMixin,
     ProfileMixin,
 )
-import asyncio
 
 
 class HTTPClient(
@@ -64,6 +65,7 @@ class AsyncHTTPClient(
 
         from gptc import Client
         from docarray import Document
+
 
         # async inputs for the client
         async def async_inputs():

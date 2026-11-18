@@ -1,8 +1,10 @@
+from typing import List, Optional, Union
+
 import numpy as np
 from docarray import BaseDoc, DocList
 from docarray.typing import NdArray
 from pydantic import Field
-from typing import Union, Optional, List
+
 from gptc import Executor, requests
 
 

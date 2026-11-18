@@ -1,7 +1,7 @@
-from docarray import Document, DocumentArray
-from gptc import Executor, Flow, requests
-
 import pytest
+from docarray import Document, DocumentArray
+
+from gptc import Executor, Flow, requests
 
 
 class SimplExecutor(Executor):

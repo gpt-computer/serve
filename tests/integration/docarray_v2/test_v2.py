@@ -14,12 +14,12 @@ from typing import (
 
 import numpy as np
 import pytest
-from gptc._docarray import is_pydantic_v2
 from docarray import BaseDoc, DocList
 from docarray.documents import ImageDoc, TextDoc
 from docarray.typing import AnyTensor, ImageUrl, NdArray
 
 from gptc import Client, Deployment, Executor, Flow, dynamic_batching, requests
+from gptc._docarray import is_pydantic_v2
 from gptc.helper import random_port
 
 
@@ -497,9 +497,9 @@ def test_chain(protocols):
             assert docs[0].a == "shape input 100"
             if len(protocols) == 1 and protocols[0] == "grpc":
                 import grpc
-                from gptc._docarray_legacy import LegacyDocumentGptc
                 from google.protobuf.json_format import MessageToDict
 
+                from gptc._docarray_legacy import LegacyDocumentGptc
                 from gptc.proto import gptc_pb2
                 from gptc.proto.gptc_pb2_grpc import GptcDiscoverEndpointsRPCStub
                 from gptc.serve.executors import __dry_run_endpoint__
@@ -513,8 +513,8 @@ def test_chain(protocols):
                     )
                 else:
                     from docarray.utils.create_dynamic_doc_class import (
-                        create_pure_python_type_model,
                         create_base_doc_from_schema,
+                        create_pure_python_type_model,
                     )
 
                 channel = grpc.insecure_channel(f"0.0.0.0:{ports[0]}")
@@ -592,9 +592,9 @@ def test_default_endpoint(protocols):
 
         if len(protocols) == 1 and protocols[0] == "grpc":
             import grpc
-            from gptc._docarray_legacy import LegacyDocumentGptc
             from google.protobuf.json_format import MessageToDict
 
+            from gptc._docarray_legacy import LegacyDocumentGptc
             from gptc.proto import gptc_pb2
             from gptc.proto.gptc_pb2_grpc import GptcDiscoverEndpointsRPCStub
             from gptc.serve.executors import __default_endpoint__, __dry_run_endpoint__
@@ -608,8 +608,8 @@ def test_default_endpoint(protocols):
                 )
             else:
                 from docarray.utils.create_dynamic_doc_class import (
-                    create_pure_python_type_model,
                     create_base_doc_from_schema,
+                    create_pure_python_type_model,
                 )
 
             channel = grpc.insecure_channel(f"0.0.0.0:{ports[0]}")

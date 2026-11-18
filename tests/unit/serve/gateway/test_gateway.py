@@ -8,9 +8,9 @@ import pytest
 from gptc.helper import random_port
 from gptc.parsers import set_gateway_parser
 from gptc.serve.runtimes.asyncio import AsyncNewLoopRuntime
+from gptc.serve.runtimes.gateway.request_handling import GatewayRequestHandler
 from gptc.serve.runtimes.servers import BaseServer
 from gptc.serve.runtimes.worker.request_handling import WorkerRequestHandler
-from gptc.serve.runtimes.gateway.request_handling import GatewayRequestHandler
 from tests.helper import (
     _generate_pod_args,
     _validate_custom_gateway_process,
@@ -163,10 +163,10 @@ def test_custom_gateway_no_executors(uses, uses_with, expected):
 
 
 def test_stream_individual_executor_simple():
-    from docarray import DocumentArray, Document
+    from docarray import Document, DocumentArray
 
+    from gptc import Executor, Flow, requests
     from gptc.serve.runtimes.gateway.http import FastAPIBaseGateway
-    from gptc import Flow, Executor, requests
 
     PARAMETERS = {"dog": "woof"}
 
@@ -226,11 +226,12 @@ def test_stream_individual_executor_multirequest(n_replicas: int, n_shards: int)
     N_DOCS: int = 100
     BATCH_SIZE: int = 5
 
-    from docarray import DocumentArray, Document
-
-    from gptc.serve.runtimes.gateway.http import FastAPIBaseGateway
-    from gptc import Flow, Executor, requests
     import os
+
+    from docarray import Document, DocumentArray
+
+    from gptc import Executor, Flow, requests
+    from gptc.serve.runtimes.gateway.http import FastAPIBaseGateway
 
     PARAMETERS = {"dog": "woof"}
 

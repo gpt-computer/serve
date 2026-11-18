@@ -6,11 +6,11 @@ import pytest
 from hubble.executor import HubExecutor
 from hubble.executor.hubio import HubIO
 
+import gptc
 from gptc.helper import Namespace
 from gptc.orchestrate.deployments.config.k8s import K8sDeploymentConfig
 from gptc.parsers import set_deployment_parser, set_gateway_parser
 from gptc.serve.networking import GrpcConnectionPool
-import gptc
 
 
 def namespace_equal(
@@ -283,15 +283,16 @@ def _custom_patched_resolve_image_name(uses: str):
 
     :return: image name equivalent
     """
+    import os
+
     from gptc.constants import (
-        __default_executor__,
-        __default_http_gateway__,
         __default_composite_gateway__,
+        __default_executor__,
         __default_grpc_gateway__,
+        __default_http_gateway__,
         __default_websocket_gateway__,
     )
     from gptc.orchestrate.deployments.config.helper import get_image_name
-    import os
 
     if uses == "gptcai+docker://gptc/custom-gateway":
         return "gptcai+docker://gptc/custom-gateway"

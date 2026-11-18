@@ -43,9 +43,10 @@ def executor_native(args: "Namespace"):
 
     :param args: arguments coming from the CLI.
     """
-    from gptc.serve.executors.run import run, run_stateful
     import multiprocessing
+
     from gptc.jaml import JAML
+    from gptc.serve.executors.run import run, run_stateful
 
     envs = {}
     envs.update(args.env or {})
@@ -88,8 +89,8 @@ def gateway(args: "Namespace"):
 
     :param args: arguments coming from the CLI.
     """
-    from gptc.serve.runtimes.gateway.request_handling import GatewayRequestHandler
     from gptc.serve.runtimes.asyncio import AsyncNewLoopRuntime
+    from gptc.serve.runtimes.gateway.request_handling import GatewayRequestHandler
 
     args.port_monitoring = args.port_monitoring[0]
     _update_gateway_args(args)

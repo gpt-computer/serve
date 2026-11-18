@@ -33,6 +33,7 @@ from gptc.types.request.data import DataRequest, SingleDocumentRequest
 
 if docarray_v2:
     from docarray import DocList
+
     from gptc._docarray import LegacyDocumentGptc
 
     legacy_doc_schema = LegacyDocumentGptc.schema()

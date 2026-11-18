@@ -1,6 +1,6 @@
 import pytest
-
 from docarray import Document
+
 from gptc import Executor, Flow, requests
 
 

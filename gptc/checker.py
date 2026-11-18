@@ -3,7 +3,6 @@ import argparse
 from gptc.helper import parse_host_scheme
 from gptc.logging.predefined import default_logger
 
-
 CORE_DEPENDENCIES = {
     "numpy": "numpy",
     "protobuf": "google.protobuf",

@@ -1,12 +1,11 @@
 from __future__ import annotations
+
 import os
-from docarray import BaseDoc
-from docarray import DocList
+from typing import Any, Dict, List, Optional, Union
 
-from pydantic import Field
-from typing import Any, Dict, Optional, List, Union
-
+from docarray import BaseDoc, DocList
 from docarray.typing import ID, AnyEmbedding, AnyTensor
+from pydantic import Field
 
 docarray_v2 = True
 

@@ -31,7 +31,8 @@ def get_fastapi_app(
     """
     with ImportExtensions(required=True):
         import pydantic
-        from fastapi import FastAPI, HTTPException, Request, status as http_status
+        from fastapi import FastAPI, HTTPException, Request
+        from fastapi import status as http_status
         from fastapi.middleware.cors import CORSMiddleware
         from pydantic import BaseModel, Field
         from pydantic.config import BaseConfig

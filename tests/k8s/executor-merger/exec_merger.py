@@ -1,7 +1,7 @@
 from itertools import chain
 from typing import Dict, List
 
-from gptc import Executor, requests, DocumentArray, Document
+from gptc import Document, DocumentArray, Executor, requests
 
 
 class ExecMerger(Executor):

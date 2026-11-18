@@ -5,7 +5,12 @@ import time
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from gptc.constants import __ready_msg__, __stop_msg__, __windows__
+from gptc.constants import (
+    RAFT_TO_EXECUTOR_PORT,
+    __ready_msg__,
+    __stop_msg__,
+    __windows__,
+)
 from gptc.enums import PodRoleType
 from gptc.excepts import RuntimeFailToStart, RuntimeRunForeverEarlyError
 from gptc.helper import typename
@@ -14,7 +19,6 @@ from gptc.logging.logger import GptcLogger
 from gptc.orchestrate.pods.helper import ConditionalEvent, _get_event
 from gptc.parsers.helper import _update_gateway_args
 from gptc.serve.executors.run import run, run_raft
-from gptc.constants import RAFT_TO_EXECUTOR_PORT
 
 __all__ = ["BasePod", "Pod"]
 
@@ -183,6 +187,7 @@ class BasePod(ABC):
         Wait for the `Pod` to start successfully in a non-blocking manner
         """
         import asyncio
+
         from gptc.serve.runtimes.servers import BaseServer
 
         _timeout = self.args.timeout_ready

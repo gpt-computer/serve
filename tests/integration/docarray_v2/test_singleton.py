@@ -1,10 +1,12 @@
-import pytest
-from gptc import Flow, Executor, Deployment, requests, Client
-from docarray import BaseDoc, DocList
-from docarray.documents import TextDoc, ImageDoc
-from gptc.helper import random_port
-from gptc.excepts import RuntimeFailToStart
 import asyncio
+
+import pytest
+from docarray import BaseDoc, DocList
+from docarray.documents import ImageDoc, TextDoc
+
+from gptc import Client, Deployment, Executor, Flow, requests
+from gptc.excepts import RuntimeFailToStart
+from gptc.helper import random_port
 
 
 @pytest.mark.parametrize("ctxt_manager", ["deployment", "flow"])

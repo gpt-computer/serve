@@ -1,18 +1,16 @@
-import time
-
-import pytest
 import os
-
-from gptc import Client, DocumentArray, Flow, Deployment
+import time
 from typing import Dict, List, Union
 
-from gptc.helper import random_port
+import pytest
 
+from gptc import Client, Deployment, DocumentArray, Flow
+from gptc._docarray import docarray_v2
+from gptc.helper import random_port
 from tests.integration.stateful.stateful_no_snapshot_exec.executor import (
     MyStateExecutorNoSnapshot,
 )
 from tests.integration.stateful.stateful_snapshot_exec.executor import MyStateExecutor
-from gptc._docarray import docarray_v2
 
 if docarray_v2:
     from docarray.documents import TextDoc
@@ -287,8 +285,8 @@ def test_stateful_index_search_container(
 @pytest.mark.skipif(not docarray_v2, reason="tests support for docarray>=0.30")
 @pytest.mark.parametrize("executor_cls", [MyStateExecutor])
 def test_add_new_replica(executor_cls, tmpdir):
-    from gptc.parsers import set_pod_parser
     from gptc.orchestrate.pods.factory import PodFactory
+    from gptc.parsers import set_pod_parser
 
     gateway_port = random_port()
     replicas = 3

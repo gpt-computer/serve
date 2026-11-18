@@ -21,8 +21,8 @@ from gptc.serve.runtimes.gateway.websocket import WebSocketGateway
 from gptc.serve.runtimes.servers import BaseServer
 
 if TYPE_CHECKING:  # pragma: no cover
-    import threading
     import multiprocessing
+    import threading
 
 HANDLED_SIGNALS = (
     signal.SIGINT,  # Unix signal 2. Sent by Ctrl+C.

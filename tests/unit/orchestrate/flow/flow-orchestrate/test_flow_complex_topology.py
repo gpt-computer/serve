@@ -1,5 +1,5 @@
-import threading
 import multiprocessing
+import threading
 import time
 
 import pytest

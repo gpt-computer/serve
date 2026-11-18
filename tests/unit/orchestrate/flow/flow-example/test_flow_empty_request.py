@@ -1,4 +1,4 @@
-from gptc import Flow, Executor, requests
+from gptc import Executor, Flow, requests
 
 
 def test_empty_post_request(mocker):

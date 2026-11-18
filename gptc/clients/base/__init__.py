@@ -11,8 +11,8 @@ from typing import (
     Callable,
     Iterator,
     Optional,
-    Union,
     Tuple,
+    Union,
 )
 
 from gptc.excepts import BadClientInput

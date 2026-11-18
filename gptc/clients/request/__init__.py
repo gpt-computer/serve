@@ -18,11 +18,12 @@ from gptc.helper import batch_iterator
 from gptc.logging.predefined import default_logger
 
 if TYPE_CHECKING:  # pragma: no cover
+    from docarray import BaseDoc, DocList
+
     from gptc._docarray import Document
     from gptc._docarray.document import DocumentSourceType
     from gptc._docarray.document.mixins.content import DocumentContentType
     from gptc.types.request import Request
-    from docarray import DocList, BaseDoc
 
     SingletonDataType = Union[
         DocumentContentType,

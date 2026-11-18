@@ -1,14 +1,12 @@
-import os
 import json
+import os
 import time
-
-import pytest
 from urllib import request
 
-from gptc import Flow
+import pytest
 from docarray import Document
-from gptc import helper
-from gptc import Executor, requests
+
+from gptc import Executor, Flow, helper, requests
 from tests import validate_callback
 
 cur_dir = os.path.dirname(os.path.abspath(__file__))

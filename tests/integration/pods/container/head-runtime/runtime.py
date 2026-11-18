@@ -1,8 +1,8 @@
 import sys
 
+from gptc.parsers import set_pod_parser
 from gptc.serve.runtimes.asyncio import AsyncNewLoopRuntime
 from gptc.serve.runtimes.head.request_handling import HeaderRequestHandler
-from gptc.parsers import set_pod_parser
 
 
 def run(*args, **kwargs):

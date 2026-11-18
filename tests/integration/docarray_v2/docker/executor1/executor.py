@@ -1,8 +1,10 @@
 from typing import Optional
-from docarray import DocList, BaseDoc
-from docarray.typing import NdArray
-from gptc import Executor, requests
+
 import numpy as np
+from docarray import BaseDoc, DocList
+from docarray.typing import NdArray
+
+from gptc import Executor, requests
 
 
 class MyDoc(BaseDoc):

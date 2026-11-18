@@ -2,7 +2,7 @@ import random
 
 import pytest
 
-from gptc import Flow, Executor, requests, Document
+from gptc import Document, Executor, Flow, requests
 from tests import random_docs, validate_callback
 
 

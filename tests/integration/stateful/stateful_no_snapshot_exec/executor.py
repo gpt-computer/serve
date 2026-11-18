@@ -1,11 +1,11 @@
-from gptc import DocumentArray, Executor, requests
-from gptc.serve.executors.decorators import write
-import random
 import os
-
+import random
 from typing import Dict, List
 
 from docarray.documents import TextDoc
+
+from gptc import DocumentArray, Executor, requests
+from gptc.serve.executors.decorators import write
 
 
 class TextDocWithId(TextDoc):

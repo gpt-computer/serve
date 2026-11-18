@@ -5,7 +5,7 @@ import pytest
 
 from gptc import Deployment, DocumentArray, Flow
 from gptc.clients import Client
-from gptc.clients.base.retry import wait_or_raise_err, sync_wait_or_raise_err
+from gptc.clients.base.retry import sync_wait_or_raise_err, wait_or_raise_err
 from tests import random_docs
 
 cur_dir = os.path.dirname(os.path.abspath(__file__))

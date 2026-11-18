@@ -4,10 +4,10 @@ import os
 import pytest
 from docarray import DocumentArray
 from pytest_kind import cluster
+
+from gptc import Client, Deployment
 from gptc.serve.networking import GrpcConnectionPool
 from gptc.serve.runtimes.servers import BaseServer
-
-from gptc import Deployment, Client
 from tests.k8s.conftest import shell_portforward
 
 cluster.KIND_VERSION = "v0.11.1"

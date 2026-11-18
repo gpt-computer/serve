@@ -1,5 +1,6 @@
 import os
-from gptc import Flow, DocumentArray
+
+from gptc import DocumentArray, Flow
 
 cur_dir = os.path.dirname(__file__)
 

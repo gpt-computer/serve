@@ -25,8 +25,9 @@ def executor_images_built():
 
 @pytest.mark.parametrize("protocol", ["http", "grpc"])
 def test_flow_with_docker(executor_images_built, protocol):
+    from typing import List, Optional
+
     from docarray import BaseDoc, DocList
-    from typing import Optional, List
     from docarray.typing import NdArray
 
     class MyDoc(BaseDoc):

@@ -5,7 +5,7 @@ PKG_NAME=gptc
 VERSION=$(shell grep '^__version__' gptc/__init__.py | sed -n "s/.*=[[:space:]]*['\"]\([^'\"]*\)['\"].*/\1/p")
 PYTHON_REQUIRED=$(shell grep '^requires-python[[:space:]]*=' pyproject.toml | sed -n 's/.*"\([^"]*\)".*/\1/p')
 DOCKER=docker
-DOCKER_DIR=Dockerfiles
+DOCKER_DIR=docker
 SPHINXBUILD=.venv/bin/sphinx-build
 RED=\033[0;31m
 NC=\033[0m # No Color
@@ -223,7 +223,7 @@ verify-dist: build ## clean-environment check: build sdist+wheel, install wheel 
 FILE ?= debianx.Dockerfile
 IMAGE ?= gptc:$(VERSION)
 
-docker_build: ## build a Docker image from Dockerfiles/
+docker_build: ## build a Docker image from docker/
 	@echo 'BUILDING IMAGE: $(DOCKER_DIR)/$(FILE) -> $(IMAGE)'
 	@command -v $(DOCKER) >/dev/null 2>&1 || { echo "Error: $(DOCKER) is not installed. Try 'make docker_build DOCKER=docker'."; exit 1; }
 	@$(DOCKER) build --rm -f $(DOCKER_DIR)/$(FILE) -t $(IMAGE) .
@@ -297,7 +297,7 @@ help_docker: ## show Docker commands
 	@echo "$(GREEN)                      DOCKER COMMANDS                               $(NC)"
 	@echo "$(GREEN)═══════════════════════════════════════════════════════════════════$(NC)"
 	@echo ''
-	@echo "  $(GREEN)make docker_build$(NC)      - Build a Docker image from Dockerfiles/"
+	@echo "  $(GREEN)make docker_build$(NC)      - Build a Docker image from docker/"
 	@echo "  $(GREEN)make docker_dev$(NC)        - Start the development container"
 	@echo "  $(GREEN)make proto$(NC)             - Regenerate protobuf modules"
 	@echo "  $(GREEN)make verify-proto$(NC)      - Regenerate protobuf modules and fail if checked-in output differs"

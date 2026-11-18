@@ -1,12 +1,13 @@
-from typing import Optional, List
+from typing import List, Optional
 
 import numpy as np
 from docarray import BaseDoc, DocList
 from docarray.typing import NdArray
 from docarray.typing.bytes import ImageBytes
 from docarray.typing.url import AnyUrl
-from gptc import Executor, requests
 from pydantic import Field
+
+from gptc import Executor, requests
 
 
 class TextAndImageDoc(BaseDoc):

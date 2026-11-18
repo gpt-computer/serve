@@ -1,12 +1,12 @@
 from typing import TYPE_CHECKING, Dict, List, Optional, Union
 
+from gptc._docarray import is_pydantic_v2
 from gptc.excepts import InternalNetworkError
 from gptc.helper import get_full_version
 from gptc.importer import ImportExtensions
 from gptc.logging.logger import GptcLogger
 from gptc.serve.networking.sse import EventSourceResponse
 from gptc.types.request.data import DataRequest
-from gptc._docarray import is_pydantic_v2
 
 if TYPE_CHECKING:  # pragma: no cover
     from opentelemetry import trace

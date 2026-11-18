@@ -47,8 +47,10 @@
 if False:
     from PIL import Image
 
+
 def func(arr: 'Image'):
     from PIL import Image
+
     ...
 ```
 

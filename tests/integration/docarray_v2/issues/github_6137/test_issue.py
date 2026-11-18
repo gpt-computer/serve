@@ -1,6 +1,7 @@
-from docarray import DocList, BaseDoc
+from docarray import BaseDoc, DocList
 from docarray.documents.text import TextDoc
-from gptc import Executor, requests, Flow
+
+from gptc import Executor, Flow, requests
 
 
 def test_issue():

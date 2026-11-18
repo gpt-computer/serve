@@ -4,9 +4,9 @@ import pytest
 from docarray import BaseDoc, DocList
 from docarray.documents import TextDoc
 from pydantic import BaseModel
-from gptc._docarray import is_pydantic_v2
 
 from gptc import Deployment, Executor, Flow, requests
+from gptc._docarray import is_pydantic_v2
 from gptc.helper import random_port
 
 

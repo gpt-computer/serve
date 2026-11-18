@@ -1,6 +1,8 @@
+from typing import List, Optional, Union
+
 from docarray import BaseDoc, DocList
 from pydantic import Field
-from typing import Union, Optional, List
+
 from gptc import Executor, requests
 
 

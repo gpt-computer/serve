@@ -10,8 +10,8 @@ from gptc.enums import ProtocolType
 from gptc.excepts import RuntimeFailToStart
 from gptc.helper import random_port
 from gptc.orchestrate.pods.container import ContainerPod
-from gptc.serve.runtimes import servers
 from gptc.parsers import set_gateway_parser
+from gptc.serve.runtimes import servers
 from tests.helper import _generate_pod_args, _validate_dummy_custom_gateway_response
 
 cur_dir = os.path.dirname(os.path.abspath(__file__))

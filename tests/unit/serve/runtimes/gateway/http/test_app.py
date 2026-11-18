@@ -11,8 +11,8 @@ from gptc import Client, Executor, Flow, requests
 from gptc.helper import random_port
 from gptc.parsers import set_gateway_parser
 from gptc.serve.runtimes.asyncio import AsyncNewLoopRuntime
-from gptc.serve.runtimes.servers import BaseServer
 from gptc.serve.runtimes.gateway.request_handling import GatewayRequestHandler
+from gptc.serve.runtimes.servers import BaseServer
 
 
 class ExecutorTest(Executor):

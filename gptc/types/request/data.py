@@ -3,7 +3,7 @@ from typing import Dict, Optional, Type, TypeVar, Union
 
 from google.protobuf import json_format
 
-from gptc._docarray import DocumentArray, Document, docarray_v2
+from gptc._docarray import Document, DocumentArray, docarray_v2
 from gptc.excepts import BadRequestType
 from gptc.helper import random_identity, typename
 from gptc.proto import gptc_pb2

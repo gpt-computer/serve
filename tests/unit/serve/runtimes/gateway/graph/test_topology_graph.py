@@ -4,8 +4,8 @@ from collections import defaultdict
 from typing import List
 
 import pytest
-
 from docarray import Document, DocumentArray
+
 from gptc.serve.runtimes.gateway.graph.topology_graph import TopologyGraph
 from gptc.types.request import Request
 from gptc.types.request.data import DataRequest
