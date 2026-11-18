@@ -34,7 +34,10 @@ def reset_ports():
 
 
 def random_port() -> Optional[int]:
-    """Get a random available port number."""
+    """Get a random available port number.
+
+    :return: A random available port number, or None if none is available.
+    """
 
     def _random_port():
         def _check_bind(port):
@@ -71,6 +74,11 @@ def random_port() -> Optional[int]:
 
 
 def random_ports(n_ports):
+    """Get a list of random available port numbers.
+
+    :param n_ports: The number of ports to allocate.
+    :return: A list of random available port numbers.
+    """
     return [random_port() for _ in range(n_ports)]
 
 
@@ -135,6 +143,12 @@ def _single_port_free(host: str, port: int) -> bool:
 
 
 def is_port_free(host: Union[str, List[str]], port: Union[int, List[int]]) -> bool:
+    """Check whether the given host/port(s) are free.
+
+    :param host: Host or list of hosts to check.
+    :param port: Port or list of ports to check.
+    :return: True if all host/port combinations are free, False otherwise.
+    """
     if isinstance(port, list):
         if isinstance(host, str):
             return all([_single_port_free(host, _p) for _p in port])

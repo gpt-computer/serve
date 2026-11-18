@@ -77,14 +77,14 @@ def colored(
             'on_white': 47
         }
     :param attrs: Attributes of color. Chosen from the following.
-       {
-          'bold': 1,
-          'dark': 2,
-          'underline': 4,
-          'blink': 5,
-          'reverse': 7,
-          'concealed': 8
-       }
+        {
+            'bold': 1,
+            'dark': 2,
+            'underline': 4,
+            'blink': 5,
+            'reverse': 7,
+            'concealed': 8
+        }
     :return: Colored text.
     """
     if "GPTC_LOG_NO_COLOR" not in os.environ:
@@ -141,5 +141,8 @@ def _wrap_text_in_rich_bracket(text: str, wrapper: str):
 
 
 def get_rich_console() -> Console:
-    """Return a singleton :class:`rich.console.Console` instance."""
+    """Return a singleton :class:`rich.console.Console` instance.
+
+    :return: A singleton :class:`rich.console.Console` instance.
+    """
     return Console()

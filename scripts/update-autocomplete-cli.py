@@ -8,7 +8,12 @@ file and exits non-zero on drift (no write).
 import sys
 from pathlib import Path
 
-ac_file = "../gptc_cli/autocomplete.py"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+AC_FILE = PROJECT_ROOT / "gptc_cli" / "autocomplete.py"
+
+# Allow this script to run from any working directory, including pre-commit.
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 
 def _generate():
@@ -49,17 +54,17 @@ def _format(src):
 def _update_autocomplete(check=False):
     generated = _format(_generate())
     if check:
-        current = Path(ac_file).read_text(encoding="utf-8")
+        current = AC_FILE.read_text(encoding="utf-8")
         if current != generated:
             print(
-                f"autocomplete drift detected in {ac_file}; "
+                f"autocomplete drift detected in {AC_FILE}; "
                 "run `python scripts/update-autocomplete-cli.py` and black -S to regenerate",
                 file=sys.stderr,
             )
             sys.exit(1)
-        print(f"{ac_file} is in sync with gptc.parsers.get_main_parser()")
+        print(f"{AC_FILE} is in sync with gptc.parsers.get_main_parser()")
         return
-    with open(ac_file, "w", encoding="utf-8") as fp:
+    with open(AC_FILE, "w", encoding="utf-8") as fp:
         fp.write(generated)
 
 

@@ -14,4 +14,4 @@ except ImportError:
 
 import pydantic
 
-is_pydantic_v2 = pydantic.__version__.startswith("2.")
+is_pydantic_v2 = pydantic.__version__.startswith('2.')

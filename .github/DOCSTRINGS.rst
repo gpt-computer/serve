@@ -152,6 +152,7 @@ Multi-line docstrings example of a function
             This is a warning example
         .. highlight:: python
         .. code-block:: python
+
             print('This is a print example')
 
         :param param1: This is an example of a param1
@@ -168,7 +169,7 @@ Multi-line docstrings example of a class
 *****************************************************
 
 .. highlight:: python
-.. code-block:: python
+.. code-block:: rst
 
     class Magic:
         """
@@ -181,6 +182,7 @@ Multi-line docstrings example of a class
 
             .. highlight:: python
             .. code-block:: python
+
                 magic_cat = Magic()
 
         :param param1: This is an example of a param1

@@ -1,7 +1,7 @@
 # GPTC PACKAGE DEPENDENCIES
 #
 # Essential: only 5, they are labeled with `core`: docarray, numpy, grpcio, protobuf, pyyaml. They will be installed
-#           when you do `pip install gptc`. They are essential to run 90% features & functionalities of Gptc.
+#           when you do `pip install gptc`. They are essential to run 90% features & functionalities of GPTC.
 # Extensions: they are labeled with different tags. They will NOT be installed by default. One can install a group of
 #           of dependencies labeled `tag` by `pip install "gptc[tag]"`
 #
@@ -44,7 +44,7 @@ opentelemetry-exporter-otlp>=1.12.0:  perf,standard,devel
 opentelemetry-exporter-prometheus>=0.33b0:  perf,standard,devel
 opentelemetry-instrumentation-aiohttp-client>=0.33b0:    perf,standard,devel
 opentelemetry-instrumentation-fastapi>=0.33b0: perf,standard,devel
-opentelemetry-exporter-otlp-proto-grpc>=1.13.0: perf,standard,devel
+opentelemetry-exporter-otlp-proto-grpc>=1.13.0: perf,standrad,devel
 fastapi>=0.76.0:            standard,devel
 uvicorn<=0.23.1:            standard,devel
 docker:                     standard,devel

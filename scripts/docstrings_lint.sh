@@ -19,6 +19,7 @@ for changed_file in $CHANGED_FILES; do
     tests/* | \
     .github/* | \
     scripts/* | \
+    fastentrypoints.py | \
     gptc/helloworld/* | \
     gptc/proto/* | \
     gptc/resources/* | \

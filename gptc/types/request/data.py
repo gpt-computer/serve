@@ -252,11 +252,12 @@ class DataRequest(Request):
     def to_dict(self, **kwargs) -> Dict:
         """Return the object in Python dictionary.
 
+        :param kwargs: Additional keyword arguments passed to the underlying conversion.
+        :return: dict representation of the object
+
         .. note::
             Array like object such as :class:`numpy.ndarray` (i.e. anything described as :class:`gptc_pb2.NdArrayProto`)
             will be converted to Python list.
-
-        :return: dict representation of the object
         """
         da = self.docs
         from google.protobuf.json_format import MessageToDict
@@ -588,11 +589,12 @@ class SingleDocumentRequest(Request):
     def to_dict(self, **kwargs) -> Dict:
         """Return the object in Python dictionary.
 
+        :param kwargs: Additional keyword arguments passed to the underlying conversion.
+        :return: dict representation of the object
+
         .. note::
             Array like object such as :class:`numpy.ndarray` (i.e. anything described as :class:`gptc_pb2.NdArrayProto`)
             will be converted to Python list.
-
-        :return: dict representation of the object
         """
         doc = self.doc
         from google.protobuf.json_format import MessageToDict

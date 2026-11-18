@@ -17,12 +17,11 @@ DOWNLOAD_URL = 'https://github.com/gpt-computer/gptc/tags'
 DOCUMENTATION = 'https://gpt-computer.github.io/serve'
 TRACKER = 'https://github.com/gpt-computer/gptc/issues'
 
-if sys.version_info < (3, 8, 0):
-    raise OSError(f'Gptc requires Python >=3.8, but yours is {sys.version}')
+if sys.version_info < (3, 7, 0):
+    raise OSError(f'Gptc requires Python >=3.7, but yours is {sys.version}')
 
 if (3, 7, 0) <= sys.version_info < (3, 8, 0):
     # https://github.com/pypa/setuptools/issues/926#issuecomment-294369342
-    sys.path.insert(0, 'docs')
     try:
         import fastentrypoints
     except ImportError:
@@ -194,6 +193,7 @@ if ret_code == 0 and not is_windows_os and (not is_mac_os or not is_37):
                 define_macros=[('Py_LIMITED_API', None)],
             )
         ],
+        'setup_requires': ['setuptools-golang'],
     }
 
 setup(
@@ -227,11 +227,11 @@ setup(
         'Intended Audience :: Developers',
         'Intended Audience :: Education',
         'Intended Audience :: Science/Research',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
-        'Programming Language :: Python :: 3.12',
         'Programming Language :: Unix Shell',
         'Environment :: Console',
         'License :: OSI Approved :: Apache Software License',

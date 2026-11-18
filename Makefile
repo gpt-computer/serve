@@ -45,7 +45,7 @@ audit: ## audit locked dependencies for known vulnerabilities
 help: ## show basic help message with common commands
 	@echo ''
 	@echo "$(GREEN)═══════════════════════════════════════════════════════════════════$(NC)"
-	@echo "$(GREEN)                      GPTC MAKEFILE COMMANDS                        $(NC)"
+	@echo "$(GREEN)                GPT::C0MPUTΞR MAKE COMMANDS                        $(NC)"
 	@echo "$(GREEN)═══════════════════════════════════════════════════════════════════$(NC)"
 	@echo ''
 	@echo "$(GREEN)Basic Commands:$(NC)"

@@ -3,7 +3,7 @@ repos:
     rev: 4.0.1
     hooks:
     -   id: flake8
-        exclude: ^(.git|__pycache__|docs/source/conf.py|old|build|dist|tests|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2)
+        exclude: ^(.git|__pycache__|docs/source/conf.py|old|build|dist|tests|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2|docs/proto/docarray_v1|docs/proto/docarray_v2|gptc/serve/consensus/add_voter/pb/)
         args:
           - --max-complexity=10
           - --max-line-length=127
@@ -13,7 +13,7 @@ repos:
   hooks:
   - id: darglint
     files: gptc/
-    exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2)
+    exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2|gptc/serve/consensus/add_voter/pb/|gptc/serve/consensus/add_voter/pb2/)
     args:
     - --message-template={path}:{line} {msg_id} {msg}
     - -s=sphinx
@@ -24,7 +24,7 @@ repos:
   hooks:
   -   id: pydocstyle
       files: gptc/
-      exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2)
+      exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2|gptc/serve/consensus/add_voter/pb/|gptc/serve/consensus/add_voter/pb2/)
       args:
       - --select=D101,D102,D103
 - repo: https://github.com/psf/black
@@ -39,20 +39,20 @@ repos:
   rev: v1.12.1
   hooks:
   -   id: blacken-docs
-      exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2)
+      exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2|gptc/serve/consensus/add_voter/pb/|gptc/serve/consensus/add_voter/pb2/)
       args:
         - -S
 - repo: https://github.com/pycqa/isort
   rev: 5.12.0
   hooks:
     - id: isort
-      exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2)
+      exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2|gptc/serve/consensus/add_voter/pb/|gptc/serve/consensus/add_voter/pb2/)
       args: ["--profile", "black"]
 - repo: local
   hooks:
   - id: autocomplete-drift-check
     name: Check CLI autocomplete drift
-    entry: python scripts/update-autocomplete-cli.py --check
+    entry: uv run python scripts/update-autocomplete-cli.py --check
     language: system
     pass_filenames: false
     files: '^gptc/parsers/|^gptc_cli/autocomplete.py$|^scripts/update-autocomplete-cli.py$'
