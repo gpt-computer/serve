@@ -1,0 +1,14 @@
+# ignore everything
+**
+.*
+
+# Allow files and directories
+!gptc/**
+!setup.py
+!pyproject.toml
+!uv.lock
+!*requirements.txt
+!README.md
+!MANIFEST.in
+!gptc_cli/**
+!fastentrypoints.py
