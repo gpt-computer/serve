@@ -1,0 +1,5 @@
+!BaseExecutor
+metas:
+  name: test1
+  workspace: $GPTC_TEST_WORKSPACE
+

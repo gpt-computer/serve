@@ -1,0 +1,12 @@
+manifest_version: 1
+name: DummyHubExecutorSlow
+kind: crafter
+type: pod
+description: resize the image to the given size.
+author: GPT::C0MPUTΞR Dev-Team (dev-team@khulnasoft.com)
+url: https://gptc.ai
+vendor: GPT::C0MPUTΞR
+documentation: https://github.com/gpt-computer/gptc-hub
+version: 0.0.0
+license: apache-2.0
+keywords: [Some keywords to describe the executor, separated by commas]
