@@ -21,7 +21,9 @@ def reset_ports():
         if MAX_PORT - DEFAULT_MIN_PORT - len(assigned_ports) < 100:
             min_port = int(os.environ.get("GPTC_RANDOM_PORT_MIN", "16384"))
         else:
-            min_port = int(os.environ.get("GPTC_RANDOM_PORT_MIN", str(DEFAULT_MIN_PORT)))
+            min_port = int(
+                os.environ.get("GPTC_RANDOM_PORT_MIN", str(DEFAULT_MIN_PORT))
+            )
         max_port = int(os.environ.get("GPTC_RANDOM_PORT_MAX", str(MAX_PORT)))
         return set(range(min_port, max_port + 1)) - set(assigned_ports)
 
@@ -132,9 +134,7 @@ def _single_port_free(host: str, port: int) -> bool:
             return True
 
 
-def is_port_free(
-    host: Union[str, List[str]], port: Union[int, List[int]]
-) -> bool:
+def is_port_free(host: Union[str, List[str]], port: Union[int, List[int]]) -> bool:
     if isinstance(port, list):
         if isinstance(host, str):
             return all([_single_port_free(host, _p) for _p in port])

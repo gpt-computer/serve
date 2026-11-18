@@ -573,8 +573,6 @@ def expand_dict(
     return d
 
 
-
-
 def warn_unknown_args(unknown_args: List[str]):
     """Creates warnings for all given arguments.
 

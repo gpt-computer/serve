@@ -144,7 +144,10 @@ class AsyncNewLoopRuntime:
         # construct server type based on protocol (and potentially req handler class to keep backwards compatibility)
         from gptc.enums import ProtocolType, ProviderType, RuntimeType
 
-        if RuntimeType.from_req_handler_cls(self.req_handler_cls) == RuntimeType.GATEWAY:
+        if (
+            RuntimeType.from_req_handler_cls(self.req_handler_cls)
+            == RuntimeType.GATEWAY
+        ):
             self.timeout_send = self.args.timeout_send
             if self.timeout_send:
                 self.timeout_send /= 1e3  # convert ms to seconds
