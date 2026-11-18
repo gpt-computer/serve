@@ -2,10 +2,9 @@ import logging
 import os
 from typing import Optional
 
+from gptc._docarray import docarray_v2
 from gptc.importer import ImportExtensions
 from gptc.serve.runtimes.servers import BaseServer
-
-from gptc._docarray import docarray_v2
 
 
 class WebSocketServer(BaseServer):

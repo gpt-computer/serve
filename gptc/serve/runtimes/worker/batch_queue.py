@@ -1,13 +1,15 @@
 import asyncio
 import copy
 from asyncio import Event, Task
-from typing import Callable, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, Callable, Dict, List, Optional, Union
+
 from gptc._docarray import docarray_v2
 
 if not docarray_v2:
     from docarray import DocumentArray
 else:
     from docarray import DocList
+
 from gptc.types.request.data import DataRequest
 
 if TYPE_CHECKING:

@@ -1,8 +1,9 @@
+from typing import Literal, Optional
+
 import numpy as np
 from docarray import BaseDoc, DocList
 from docarray.typing import NdArray
-from pydantic import Field, BaseModel
-from typing import Optional, Literal
+from pydantic import BaseModel, Field
 
 from gptc import Executor, requests
 

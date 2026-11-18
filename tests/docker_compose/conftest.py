@@ -3,9 +3,9 @@ import subprocess
 import time
 from typing import List
 
-import docker
 import pytest
 
+import docker
 from gptc.logging.logger import GptcLogger
 
 client = docker.from_env()

@@ -1,6 +1,6 @@
-from gptc import Executor, requests
-
 from dep import hello
+
+from gptc import Executor, requests
 
 
 class MyExecutor(Executor):

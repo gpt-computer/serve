@@ -156,7 +156,7 @@ linkcheck_ignore = [
     'https://github.com/gpt-computer/gptc/commit/*',
     '.github/*',
     'extra-requirements.txt',
-    'fastentrypoints.py',
+    'docs/fastentrypoints.py',
     '../../101',
     '../../102',
     'http://www.twinsun.com/tz/tz-link.htm',  # Broken link from pytz library

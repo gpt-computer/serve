@@ -1,6 +1,6 @@
 set -ex
 
-docker build --build-arg PIP_TAG="[devel]" --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f Dockerfiles/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
+docker build --build-arg PIP_TAG="[devel]" --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f docker/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
 docker build -f tests/gptchub/hub_mwu/Dockerfile tests/gptchub/hub_mwu -t hubpod:test
 docker build -f tests/gptchub/Dockerfile tests/gptchub/ -t gptcomputer/test_hubapp_hubpods
 

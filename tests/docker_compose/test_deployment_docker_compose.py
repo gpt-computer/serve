@@ -1,10 +1,11 @@
 # kind version has to be bumped to v0.11.1 since pytest-kind is just using v0.10.0 which does not work on ubuntu in ci
 import os
+
 import pytest
 import requests as req
-from gptc.helper import random_port
 
-from gptc import Client, Document, Deployment
+from gptc import Client, Deployment, Document
+from gptc.helper import random_port
 from tests.docker_compose.conftest import DockerComposeServices
 
 

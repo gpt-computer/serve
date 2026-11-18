@@ -1,6 +1,6 @@
 import pytest
-
 from docarray import Document, DocumentArray
+
 from gptc import Executor, requests
 from gptc.clients.request import request_generator
 from gptc.logging.logger import GptcLogger

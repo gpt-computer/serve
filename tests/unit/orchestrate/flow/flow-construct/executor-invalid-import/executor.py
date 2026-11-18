@@ -1,6 +1,6 @@
-from gptc import Executor, DocumentArray, requests
-
 import some.missing.depdency
+
+from gptc import DocumentArray, Executor, requests
 
 
 class InvalidImportExec(Executor):

@@ -7,7 +7,6 @@ from gptc.importer import ImportExtensions
 from gptc.serve.networking.sse import EventSourceResponse
 from gptc.types.request.data import DataRequest
 
-
 if TYPE_CHECKING:
     from gptc.logging.logger import GptcLogger
 

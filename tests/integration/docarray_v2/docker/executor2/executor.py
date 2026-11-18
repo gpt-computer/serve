@@ -1,7 +1,9 @@
-from typing import Optional, List
-from docarray import DocList, BaseDoc
-from docarray.typing import NdArray
+from typing import List, Optional
+
+from docarray import BaseDoc, DocList
 from docarray.index import InMemoryExactNNIndex
+from docarray.typing import NdArray
+
 from gptc import Executor, requests
 
 

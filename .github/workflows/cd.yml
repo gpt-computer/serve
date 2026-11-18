@@ -17,7 +17,7 @@ jobs:
       !startsWith(github.event.head_commit.message, 'chore') &&
       !startsWith(github.event.head_commit.message, 'build: hotfix') &&
       !endsWith(github.event.head_commit.message, 'reformatted by gptc-dev-bot')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,7 +29,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_DEVBOT_USER  }}
           password: ${{ secrets.DOCKERHUB_DEVBOT_PWD }}
-          repository: gptcomputer/gptc
+          repository: gpt-computer/gptc
           readme-filepath: ./README-trunc.md
       - uses: actions/checkout@v4
         with:
@@ -134,7 +134,7 @@ jobs:
       - name: Prepare environment
         run: |
           # Take into account in the `test-pip` the versions
-          docker build --build-arg PYDANTIC_VERSION="${{ matrix.pydantic-version }}" -f Dockerfiles/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
+          docker build --build-arg PYDANTIC_VERSION="${{ matrix.pydantic-version }}" -f docker/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
           python -m pip install --upgrade pip
           python -m pip install wheel
           WHEEL_FILE=$(ls dist/*whl)
@@ -214,7 +214,7 @@ jobs:
       - name: Prepare environment
         run: |
           # Take into account in the `test-pip` the versions
-          docker build --build-arg PYDANTIC_VERSION="${{ matrix.pydantic-version }}" -f Dockerfiles/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
+          docker build --build-arg PYDANTIC_VERSION="${{ matrix.pydantic-version }}" -f docker/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
           python -m pip install --upgrade pip
           python -m pip install wheel
           WHEEL_FILE=$(ls dist/*whl)
@@ -291,7 +291,7 @@ jobs:
       matrix:
         include:
           # linux
-          - os: ubuntu-latest
+          - os: ubuntu-22.04
             python: '3.8'
             python-manylinux-tag: "cp38-cp38"
           - os: ubuntu-latest
@@ -484,7 +484,7 @@ jobs:
           setuptools-golang-build-manylinux-wheels --pythons cp310-cp310
       - name: Prepare environment
         run: |
-          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f Dockerfiles/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
+          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f docker/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
           python -m pip install --upgrade pip
           python -m pip install wheel
           WHEEL_FILE=$(ls dist/*whl)
@@ -528,7 +528,7 @@ jobs:
       matrix:
         core: ['', 'true']
         perf: ['', 'true']
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.9", "3.10", "3.11"]
         exclude: 
           - core: 'true'
             perf: 'true'
@@ -580,7 +580,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: Dockerfiles/debianx.Dockerfile
+          file: docker/debianx.Dockerfile
           platforms: ${{ matrix.test-arch }}
           push: true
           tags: localhost:5000/gptc/multiarch:latest
@@ -601,7 +601,7 @@ jobs:
           cache-dependency-path: uv.lock
       - name: Prepare enviroment
         run: |
-          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f Dockerfiles/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
+          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f docker/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
           python -m pip install --upgrade pip
           python -m pip install wheel
           pip install ".[all]" --no-cache-dir
@@ -646,7 +646,7 @@ jobs:
           cache-dependency-path: uv.lock
       - name: Prepare enviroment
         run: |
-          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f Dockerfiles/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
+          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f docker/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
           python -m pip install --upgrade pip
           python -m pip install wheel
           pip install ".[all]" --no-cache-dir
@@ -691,7 +691,7 @@ jobs:
           cache-dependency-path: uv.lock
       - name: Prepare enviroment
         run: |
-          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f Dockerfiles/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
+          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f docker/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
           python -m pip install --upgrade pip
           python -m pip install wheel
           pip install ".[all]" --no-cache-dir
@@ -736,7 +736,7 @@ jobs:
           cache-dependency-path: uv.lock
       - name: Prepare enviroment
         run: |
-          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f Dockerfiles/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
+          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f docker/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
           python -m pip install --upgrade pip
           python -m pip install wheel
           pip install ".[all]" --no-cache-dir
@@ -782,7 +782,7 @@ jobs:
           cache-dependency-path: uv.lock
       - name: Prepare enviroment
         run: |
-          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f Dockerfiles/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
+          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f docker/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
           python -m pip install --upgrade pip
           python -m pip install wheel
           pip install ".[all]" --no-cache-dir
@@ -825,7 +825,7 @@ jobs:
           cache-dependency-path: uv.lock
       - name: Prepare enviroment
         run: |
-          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f Dockerfiles/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
+          docker build --build-arg DOCARRAY_VERSION="0.21.0" --build-arg PYDANTIC_VERSION="==1.10.3" -f docker/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
           python -m pip install --upgrade pip
           python -m pip install wheel
           pip install ".[all]" --no-cache-dir

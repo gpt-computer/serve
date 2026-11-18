@@ -1,4 +1,4 @@
-from gptc import Executor, requests, Flow, DocumentArray
+from gptc import DocumentArray, Executor, Flow, requests
 
 
 def test_call_good_base_executor():

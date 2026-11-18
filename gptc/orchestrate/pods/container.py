@@ -9,7 +9,7 @@ import time
 from typing import TYPE_CHECKING, Dict, Optional, Union
 
 from gptc.constants import __docker_host__, __windows__
-from gptc.enums import PodRoleType, DockerNetworkMode
+from gptc.enums import DockerNetworkMode, PodRoleType
 from gptc.excepts import BadImageNameError, DockerVersionError
 from gptc.helper import random_name, slugify
 from gptc.importer import ImportExtensions
@@ -24,6 +24,7 @@ from gptc.parsers import set_gateway_parser
 
 if TYPE_CHECKING:  # pragma: no cover
     import threading
+
     from docker.client import DockerClient
 
 
@@ -38,6 +39,7 @@ def _docker_run(
     # important to notice, that client is not assigned as instance member to avoid potential
     # heavy copy into new process memory space
     import warnings
+
     import docker
 
     docker_version = client.version().get("Version")
@@ -210,8 +212,9 @@ def run(
     :param is_shutdown: concurrency event to communicate runtime is terminated
     :param is_ready: concurrency event to communicate runtime is ready to receive messages
     """
-    import docker
     import asyncio
+
+    import docker
 
     log_kwargs = copy.deepcopy(vars(args))
     log_kwargs["log_config"] = "docker"

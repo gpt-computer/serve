@@ -3,12 +3,13 @@ import asyncio
 import json
 import os
 from collections import defaultdict
-from typing import TYPE_CHECKING, AsyncIterator, Dict, List, Optional, Tuple, Any
+from typing import TYPE_CHECKING, Any, AsyncIterator, Dict, List, Optional, Tuple
 
 import grpc
 
-from gptc.enums import PollingType
+from gptc._docarray import docarray_v2, is_pydantic_v2
 from gptc.constants import __default_endpoint__
+from gptc.enums import PollingType
 from gptc.excepts import InternalNetworkError
 from gptc.helper import get_full_version
 from gptc.proto import gptc_pb2
@@ -16,7 +17,6 @@ from gptc.serve.networking import GrpcConnectionPool
 from gptc.serve.runtimes.monitoring import MonitoringRequestMixin
 from gptc.serve.runtimes.worker.request_handling import WorkerRequestHandler
 from gptc.types.request.data import DataRequest, Response
-from gptc._docarray import docarray_v2, is_pydantic_v2
 
 if docarray_v2:
     if not is_pydantic_v2:

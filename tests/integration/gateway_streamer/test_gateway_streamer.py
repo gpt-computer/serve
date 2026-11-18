@@ -7,9 +7,9 @@ import pytest
 from gptc import Document, DocumentArray, Executor, requests
 from gptc.excepts import ExecutorError
 from gptc.serve.runtimes.asyncio import AsyncNewLoopRuntime
+from gptc.serve.runtimes.gateway.streamer import GatewayStreamer
 from gptc.serve.runtimes.servers import BaseServer
 from gptc.serve.runtimes.worker.request_handling import WorkerRequestHandler
-from gptc.serve.runtimes.gateway.streamer import GatewayStreamer
 from gptc.types.request import Request
 from gptc.types.request.data import DataRequest
 from tests.helper import _generate_pod_args

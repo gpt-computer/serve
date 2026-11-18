@@ -1,7 +1,7 @@
-from gptc.serve.runtimes.gateway.http.fastapi import (
-    FastAPIBaseGateway,
-)  # keep import here for backwards compatibility
 from gptc.serve.runtimes.gateway.gateway import BaseGateway
+from gptc.serve.runtimes.gateway.http.fastapi import (  # keep import here for backwards compatibility
+    FastAPIBaseGateway,
+)
 from gptc.serve.runtimes.servers.http import HTTPServer
 
 __all__ = ["HTTPGateway"]

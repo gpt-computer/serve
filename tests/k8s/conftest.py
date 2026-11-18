@@ -6,11 +6,11 @@ import time
 from pathlib import Path
 from typing import Dict, List
 
-import docker
 import pytest
 from pytest import FixtureRequest
 from pytest_kind import KindCluster
 
+import docker
 from gptc.logging.logger import GptcLogger
 
 client = docker.from_env()

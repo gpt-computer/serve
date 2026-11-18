@@ -4,9 +4,8 @@ from grpc_reflection.v1alpha import reflection
 from pydantic import BaseModel
 from uvicorn import Config, Server
 
-
-from gptc.constants import __default_host__
 from gptc import Gateway
+from gptc.constants import __default_host__
 from gptc.proto import gptc_pb2, gptc_pb2_grpc
 
 

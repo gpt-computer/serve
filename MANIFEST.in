@@ -1,8 +1,9 @@
 recursive-include docarray/resources *
 recursive-include gptc/resources *
+recursive-include logo *
 recursive-include gptc/serve/consensus *
 include extra-requirements.txt
-include fastentrypoints.py
+include docs/fastentrypoints.py
 include LICENSE
 prune tests/
 prune **/tests/

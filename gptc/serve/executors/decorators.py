@@ -249,6 +249,7 @@ def requests(
         from gptc import Executor, requests, Flow
         from docarray import Document
 
+
         # define Executor with custom `@requests` endpoints
         class MyExecutor(Executor):
             @requests(on='/index')
@@ -540,8 +541,7 @@ def monitor(
 
                 # custom metric for `my_method`
                 @monitor(name='metric_name', documentation='useful information goes here')
-                def my_method(self):
-                    ...
+                def my_method(self): ...
 
         As context manager
 

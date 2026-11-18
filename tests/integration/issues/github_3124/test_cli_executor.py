@@ -1,8 +1,8 @@
 import os
-import time
-import pytest
-
 import subprocess
+import time
+
+import pytest
 
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 

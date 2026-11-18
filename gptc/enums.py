@@ -225,7 +225,11 @@ class RuntimeType(str, Enum):
 
     @classmethod
     def from_req_handler_cls(cls, req_handler_cls):
-        """Map a request-handler class to its RuntimeType by __name__."""
+        """Map a request-handler class to its RuntimeType by __name__.
+
+        :param req_handler_cls: The request-handler class to map.
+        :return: The matching RuntimeType.
+        """
         name = getattr(req_handler_cls, "__name__", None)
         mapping = {
             "GatewayRequestHandler": cls.GATEWAY,

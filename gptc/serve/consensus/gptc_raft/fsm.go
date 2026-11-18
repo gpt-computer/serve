@@ -14,7 +14,6 @@ import (
     "google.golang.org/protobuf/proto"
     "google.golang.org/protobuf/types/known/emptypb"
     healthpb "google.golang.org/grpc/health/grpc_health_v1"
-    empty "github.com/golang/protobuf/ptypes/empty"
 
     "github.com/hashicorp/raft"
     pb "jraft/gptc-go-proto"
@@ -264,7 +263,7 @@ func (fsm *executorFSM) Read(ctx context.Context, dataRequestProto *pb.DataReque
     return response, err
 }
 
-func (fsm *executorFSM) EndpointDiscovery(ctx context.Context, empty *empty.Empty) (*pb.EndpointsProto, error) {
+func (fsm *executorFSM) EndpointDiscovery(ctx context.Context, empty *emptypb.Empty) (*pb.EndpointsProto, error) {
     fsm.logger.Debug("Call EndpointDiscovery")
     conn, err := fsm.executor.newConnection()
     if err != nil {
@@ -283,7 +282,7 @@ func (fsm *executorFSM) EndpointDiscovery(ctx context.Context, empty *empty.Empt
 }
 
 
-func (fsm *executorFSM) XStatus(ctx context.Context, empty *empty.Empty) (*pb.GptcInfoProto, error) {
+func (fsm *executorFSM) XStatus(ctx context.Context, empty *emptypb.Empty) (*pb.GptcInfoProto, error) {
     fsm.logger.Debug("Call XStatus")
     conn, err := fsm.executor.newConnection()
     if err != nil {

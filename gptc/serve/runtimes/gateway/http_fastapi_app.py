@@ -97,8 +97,8 @@ def get_fastapi_app(
         from gptc._docarray import DocumentArray
         from gptc.proto import gptc_pb2
         from gptc.serve.executors import __dry_run_endpoint__
-        from gptc.serve.runtimes.gateway.models import PROTO_TO_PYDANTIC_MODELS
         from gptc.serve.runtimes.gateway.health_model import GptcInfoModel
+        from gptc.serve.runtimes.gateway.models import PROTO_TO_PYDANTIC_MODELS
         from gptc.types.request.status import StatusMessage
 
         @app.get(

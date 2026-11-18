@@ -1,5 +1,6 @@
 import pytest
-from gptc import Flow, DocumentArray
+
+from gptc import DocumentArray, Flow
 
 
 @pytest.mark.parametrize("use_stream", [False, True])

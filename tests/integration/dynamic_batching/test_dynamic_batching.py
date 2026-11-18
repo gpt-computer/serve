@@ -10,19 +10,19 @@ import pytest
 
 from gptc import (
     Client,
+    Deployment,
     Document,
     DocumentArray,
     Executor,
     Flow,
-    Deployment,
     dynamic_batching,
     requests,
 )
 from gptc.clients.request import request_generator
+from gptc.proto import gptc_pb2
 from gptc.serve.networking.utils import send_request_sync
 from gptc.serve.runtimes.servers import BaseServer
 from gptc_cli.api import executor_native
-from gptc.proto import gptc_pb2
 from tests.helper import _generate_pod_args
 
 cur_dir = os.path.dirname(__file__)

@@ -129,9 +129,9 @@ def test_ping():
     ],
 )
 def test_logo_silence(cmd):
-    from gptc.constants import __resources_path__
+    from logo import resolve
 
-    with open(os.path.join(__resources_path__, "gptc.logo"), encoding="utf-8") as fp:
+    with open(resolve("@logo/gptc.logo"), encoding="utf-8") as fp:
         logo_str = fp.read()
 
     s = subprocess.run(

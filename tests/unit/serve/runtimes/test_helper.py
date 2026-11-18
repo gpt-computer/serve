@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Tuple, Union, ClassVar
+from typing import Any, ClassVar, Dict, List, Optional, Tuple, Union
 from unittest.mock import Mock
 
 import pytest
@@ -105,8 +105,8 @@ def test_create_pydantic_model_from_schema(transformation):
         )
     else:
         from docarray.utils.create_dynamic_doc_class import (
-            create_pure_python_type_model,
             create_base_doc_from_schema,
+            create_pure_python_type_model,
         )
 
     class Nested2Doc(BaseDoc):
@@ -298,8 +298,8 @@ def test_create_empty_doc_list_from_schema(transformation):
         )
     else:
         from docarray.utils.create_dynamic_doc_class import (
-            create_pure_python_type_model,
             create_base_doc_from_schema,
+            create_pure_python_type_model,
         )
 
     class CustomDoc(BaseDoc):
@@ -400,8 +400,8 @@ def test_dynamic_class_creation_multiple_doclist_nested():
         )
     else:
         from docarray.utils.create_dynamic_doc_class import (
-            create_pure_python_type_model,
             create_base_doc_from_schema,
+            create_pure_python_type_model,
         )
 
     class MyTextDoc(BaseDoc):

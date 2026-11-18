@@ -1,6 +1,6 @@
 import asyncio
 import time
-from typing import AsyncGenerator, Generator, Optional, ClassVar
+from typing import AsyncGenerator, ClassVar, Generator, Optional
 
 import pytest
 from docarray import BaseDoc, DocList

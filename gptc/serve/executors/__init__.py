@@ -52,8 +52,9 @@ from gptc.serve.helper import (
 from gptc.serve.instrumentation import MetricsTimer
 
 if docarray_v2:
-    from gptc._docarray import LegacyDocumentGptc
     from docarray.utils._internal._typing import safe_issubclass
+
+    from gptc._docarray import LegacyDocumentGptc
 else:
     safe_issubclass = issubclass
 

@@ -8,11 +8,10 @@ from docarray import DocumentArray
 from gptc import Client, Executor, requests
 from gptc.parsers import set_gateway_parser
 from gptc.serve.runtimes.asyncio import AsyncNewLoopRuntime
+from gptc.serve.runtimes.gateway.request_handling import GatewayRequestHandler
 from gptc.serve.runtimes.servers import BaseServer
 from gptc.serve.runtimes.worker.request_handling import WorkerRequestHandler
-from gptc.serve.runtimes.gateway.request_handling import GatewayRequestHandler
 from tests.helper import _generate_pod_args
-
 from tests.integration.runtimes.test_runtimes import (
     _create_gateway_runtime,
     _create_head_runtime,

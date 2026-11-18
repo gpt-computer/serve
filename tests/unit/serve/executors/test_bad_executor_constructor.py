@@ -1,6 +1,6 @@
-from gptc import Flow, Executor, requests
-
 import pytest
+
+from gptc import Executor, Flow, requests
 
 
 class GoodExecutor(Executor):

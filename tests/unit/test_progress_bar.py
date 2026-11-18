@@ -1,6 +1,7 @@
 import time
 
 import pytest
+
 from gptc.logging.profile import ProgressBar
 
 

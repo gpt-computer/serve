@@ -1,5 +1,6 @@
-from gptc import Flow
 import os
+
+from gptc import Flow
 
 os.environ["GPTC_LOG_LEVEL"] = "DEBUG"
 

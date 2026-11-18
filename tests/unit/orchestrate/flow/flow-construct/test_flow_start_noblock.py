@@ -2,10 +2,10 @@ import time
 
 import pytest
 
-from gptc.excepts import RuntimeFailToStart
-from gptc.serve.executors import BaseExecutor
 from gptc import Flow
+from gptc.excepts import RuntimeFailToStart
 from gptc.logging.profile import TimeContext
+from gptc.serve.executors import BaseExecutor
 
 
 class SlowExecutor(BaseExecutor):

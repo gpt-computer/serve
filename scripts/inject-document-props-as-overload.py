@@ -2,7 +2,7 @@ import inspect
 import re
 import warnings
 from operator import itemgetter
-from typing import Optional, Tuple, List
+from typing import List, Optional, Tuple
 
 from gptc import Document
 

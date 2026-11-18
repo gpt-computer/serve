@@ -6,8 +6,8 @@ import pytest
 from gptc.excepts import RuntimeFailToStart
 from gptc.orchestrate.pods import Pod
 from gptc.parsers import set_gateway_parser
-from gptc.serve.runtimes import asyncio as runtime_asyncio
 from gptc.serve.executors import BaseExecutor
+from gptc.serve.runtimes import asyncio as runtime_asyncio
 from tests.helper import _generate_pod_args
 
 

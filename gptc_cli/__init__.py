@@ -37,9 +37,9 @@ def _get_run_args(print_args: bool = True):
                 if isinstance(a, (_StoreAction, _StoreTrueAction))
             }
 
-            with open(
-                os.path.join(__resources_path__, "gptc.logo"), encoding="utf-8"
-            ) as fp:
+            from logo import resolve
+
+            with open(resolve("@logo/gptc.logo"), encoding="utf-8") as fp:
                 logo_str = fp.read()
 
             param_str = Table(

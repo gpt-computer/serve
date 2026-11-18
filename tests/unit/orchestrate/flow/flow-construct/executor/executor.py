@@ -1,4 +1,4 @@
-from gptc import Executor, DocumentArray, requests
+from gptc import DocumentArray, Executor, requests
 
 
 class CustomExec(Executor):

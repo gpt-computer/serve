@@ -2,8 +2,8 @@ import asyncio
 import time
 
 import pytest
-
 from docarray import Document
+
 from gptc.clients.request import request_generator
 from gptc.serve.stream.helper import AsyncRequestsIterator, _RequestsCounter
 

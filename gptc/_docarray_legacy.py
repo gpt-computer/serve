@@ -1,12 +1,11 @@
 from __future__ import annotations
+
 import os
-from docarray import BaseDoc
-from docarray import DocList
+from typing import Any, Dict, List, Optional, Union
 
-from pydantic import Field
-from typing import Any, Dict, Optional, List, Union
-
+from docarray import BaseDoc, DocList
 from docarray.typing import ID, AnyEmbedding, AnyTensor
+from pydantic import Field
 
 docarray_v2 = True
 
@@ -25,7 +24,7 @@ class LegacyDocumentGptc(BaseDoc):
     from docarray.documents.legacy import LegacyDocument
     import numpy as np
 
-    doc = LegacyDocument(text='hello')
+    doc = LegacyDocumentGptc(text='hello')
     doc.url = 'http://myimg.png'
     doc.tensor = np.zeros((3, 224, 224))
     doc.embedding = np.zeros((100, 1))
@@ -40,7 +39,7 @@ class LegacyDocumentGptc(BaseDoc):
     """
 
     id: Optional[ID] = Field(
-        description="The ID of the BaseDoc. This is useful for indexing in vector stores. If not set by user, it will automatically be assigned a random value",
+        description='The ID of the BaseDoc. This is useful for indexing in vector stores. If not set by user, it will automatically be assigned a random value',
         default_factory=lambda: ID(os.urandom(16).hex()),
     )
 

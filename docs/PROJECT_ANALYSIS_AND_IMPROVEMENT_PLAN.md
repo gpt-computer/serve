@@ -1,7 +1,7 @@
 # Project Structure Analysis & Improvement Plan
 
 Repository: `gpt-computer/serve` (package `gptc`, a Jina-derived serving framework)
-Analyzed version: `3.34.1` (`gptc/__init__.py:79`) · Python `>=3.8,<3.13` (`pyproject.toml:8`)
+Analyzed version: `1.0.1` (`gptc/__init__.py:79`) · Python `>=3.8,<3.13` (`pyproject.toml:8`)
 
 ## 1. Scope and method
 
@@ -34,7 +34,7 @@ gptc_cli/                  CLI dispatch, api.py, 574-line hand-written autocompl
 tests/                     unit (88) · integration (100) · k8s (4) · k8s_otel (1)
                            docker_compose (2) · gptchub (shell-based)
 docs/                      Sphinx + MyST, generated proto docs, versioned builds
-Dockerfiles/               7 images (debianx, pip, pip-perf, test-pip, protogen×2, dind)
+docker/               7 images (debianx, pip, pip-perf, test-pip, protogen×2, dind)
 scripts/                   black/docstring/release/version/codegen helpers
 .github/workflows/         19 workflows; ci.yml + cd.yml ~1,700 lines combined
 ```
@@ -91,7 +91,7 @@ Severity: **P0** = correctness/CI is broken or user-facing documentation is wron
 | D2 | **44 of 54 redirect targets do not exist** (old `concepts/executor/*`, `concepts/flow/*`, `concepts/gateway/*` layout vs current `concepts/serving/*`, `concepts/orchestration/*`). | `docs/redirects.txt` |
 | D3 | Broken toctrees/links: `tutorials/deploy-pipeline`, `executor/index.md:53` `basics`, `hub/index.md:49` `yaml-spec`, `docs/yaml-spec.md:33,49`, stale Colab link; missing autosummary/apidoc templates (`class.rst`, `template/`). | `docs/index.md:167`, `docs/tutorials/index.md:5`, `docs/conf.py:144` |
 | D4 | `docs/conf.py:159` missing comma concatenates two ignore entries into one bogus string. | `docs/conf.py:159-160` |
-| D5 | Generated artifacts are stale/committed: `docs/_versions.json` newest is `v3.34.0` vs version 3.34.1; `docs/proto/` duplicates `gptc/proto/` with stale variants. | `docs/_versions.json`, `docs/proto/docs.md` |
+| D5 | Generated artifacts are stale/committed: `docs/_versions.json` newest is `v3.34.0` vs version 1.0.1; `docs/proto/` duplicates `gptc/proto/` with stale variants. | `docs/_versions.json`, `docs/proto/docs.md` |
 | D6 | Docs requirements include an unpinned VCS HEAD dependency and mixed pinning; `docs/index.md:16` still claims Python 3.7+. | `docs/requirements.txt:17`, `docs/index.md:16` |
 | D7 | Onboarding docs contradict reality: missing `.github/CODEOWNERS`, Python 3.7/3.8 + `pip install .[all]` vs uv workflow, `pip.Dockerfile` vs CI's `test-pip.Dockerfile`, stale doc links. | `CONTRIBUTING.md:48,214-218,243,272-274` |
 
@@ -99,9 +99,9 @@ Severity: **P0** = correctness/CI is broken or user-facing documentation is wron
 
 | # | Finding | Evidence |
 |---|---|---|
-| C1 | Protogen images are effectively unusable as built: `ENTRYPOINT bash ./build-proto.sh` but that script lives under `gptc/proto/docarray_v{1,2}/`, not `/gptc/proto/`; images use EOL `python:3.7-slim`, clone grpc HEAD unpinned, and install nothing in one `apt-get` line. | `Dockerfiles/protogen*.Dockerfile:3,12,17-21` |
-| C2 | Broken shell tests: `[ $PY_VERSION==3.11 ]` is always true for 3.10 (`debianx.Dockerfile:47`), while `[[ ... ]]` under `/bin/sh` fails in `pip*.Dockerfile:8`; `.bashrc` `grep` debug lines exit 1 when the marker is absent, failing builds. | `Dockerfiles/debianx.Dockerfile:44-49`, `Dockerfiles/pip*.Dockerfile:8,23-24,29-30` |
-| C3 | All images run as root, use `apt-get upgrade`, unpinned `pip install`, unverified Go 1.19 downloads, and external piwheels index; compose uses `prom/prometheus:latest` / `jaegertracing/all-in-one:latest`. | `Dockerfiles/*`, `tests/integration/instrumentation/docker-compose.yml:6,14` |
+| C1 | Protogen images are effectively unusable as built: `ENTRYPOINT bash ./build-proto.sh` but that script lives under `gptc/proto/docarray_v{1,2}/`, not `/gptc/proto/`; images use EOL `python:3.7-slim`, clone grpc HEAD unpinned, and install nothing in one `apt-get` line. | `docker/protogen*.Dockerfile:3,12,17-21` |
+| C2 | Broken shell tests: `[ $PY_VERSION==3.11 ]` is always true for 3.10 (`debianx.Dockerfile:47`), while `[[ ... ]]` under `/bin/sh` fails in `pip*.Dockerfile:8`; `.bashrc` `grep` debug lines exit 1 when the marker is absent, failing builds. | `docker/debianx.Dockerfile:44-49`, `docker/pip*.Dockerfile:8,23-24,29-30` |
+| C3 | All images run as root, use `apt-get upgrade`, unpinned `pip install`, unverified Go 1.19 downloads, and external piwheels index; compose uses `prom/prometheus:latest` / `jaegertracing/all-in-one:latest`. | `docker/*`, `tests/integration/instrumentation/docker-compose.yml:6,14` |
 | C4 | Build artifacts and a 19 MB compiled `.so` live in the tree: `build/` (two Python versions), `dist/`, `gptc.egg-info/`, `jraft.abi3.so`, `__pycache__/`, `.eggs/` with a Python 3.14 egg. | repo root; `.gitignore:7,11,13,24,73` |
 
 ### 3.6 Code quality and security (P2)
@@ -118,7 +118,7 @@ Severity: **P0** = correctness/CI is broken or user-facing documentation is wron
 | M1 | `format`/`format_check` pass `--config pyproject.toml` but pyproject has **no `[tool.black]` section** → broken targets. | `Makefile:150-154`, `pyproject.toml` |
 | M2 | `lint` calls `scripts/docstrings_lint.sh` without `CHANGED_FILES`, so the script finds zero files and exits 0 — docstring lint silently skipped; it also uses bare `pip` on each run. | `Makefile:159`, `scripts/docstrings_lint.sh:9-24` |
 | M3 | `clean_python_cache` passes the *file* `.coverage` to `CLEAR_DIRS` (which does `mkdir -p`), so it errors and never removes it. | `Makefile:30,100` |
-| M4 | `proto` and `docker_dev` mount `/workspace` while the images use `WORKDIR /gptc` with an `ENTRYPOINT` that isn't a shell — mounts are unused. | `Makefile:210-222`, `Dockerfiles/dev.Dockerfile:9,18` |
+| M4 | `proto` and `docker_dev` mount `/workspace` while the images use `WORKDIR /gptc` with an `ENTRYPOINT` that isn't a shell — mounts are unused. | `Makefile:210-222`, `docker/dev.Dockerfile:9,18` |
 | M5 | `docs*` targets use bare `sphinx-build`/`$(MAKE) html` into `_build/html`, diverging from `docs/makedoc.sh` (`_build/dirhtml`, proto copy, images copy); Sphinx is not installed in `.venv`; `docs_install` installs unpinned requirements into the uv-managed venv. | `Makefile:228-239` |
 | M6 | Defaults diverge from project docs/CI: `DOCKER=podman` (everything else uses `docker`). `.PHONY` omits `check_tools`; `host`/`UV_RUN_ARGS` unused. | `Makefile:1,7,18,22` |
 

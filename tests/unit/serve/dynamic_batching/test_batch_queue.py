@@ -1,7 +1,7 @@
 import asyncio
+import time
 
 import pytest
-import time
 
 from gptc import Document, DocumentArray
 from gptc.serve.runtimes.worker.batch_queue import BatchQueue

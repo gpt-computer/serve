@@ -2,8 +2,8 @@
 
 from gptc.parsers.base import set_base_parser
 from gptc.parsers.helper import KVAppendAction, add_arg_group
-from gptc.parsers.orchestrate.base import mixin_essential_parser
 from gptc.parsers.logging import mixin_suppress_root_logging_parser
+from gptc.parsers.orchestrate.base import mixin_essential_parser
 
 
 def mixin_flow_features_parser(parser):

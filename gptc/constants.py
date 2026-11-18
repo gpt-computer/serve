@@ -1,7 +1,7 @@
+import datetime as _datetime
 import os as _os
 import sys as _sys
 from pathlib import Path as _Path
-import datetime as _datetime
 
 __windows__ = _sys.platform == "win32"
 __uptime__ = _datetime.datetime.now().isoformat()

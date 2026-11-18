@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from gptc import Flow, Executor, requests, DocumentArray, Document
+from gptc import Document, DocumentArray, Executor, Flow, requests
 
 
 @pytest.fixture()

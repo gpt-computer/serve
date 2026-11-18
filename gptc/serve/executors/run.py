@@ -1,14 +1,14 @@
 import argparse
+import copy
 import multiprocessing
 import os
-import copy
-from typing import Dict, Optional, Type, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict, Optional, Type, Union
 
+from gptc.constants import RAFT_TO_EXECUTOR_PORT
 from gptc.enums import RuntimeType
 from gptc.logging.logger import GptcLogger
-from gptc.serve.runtimes.asyncio import AsyncNewLoopRuntime
 from gptc.serve.helper import _get_workspace_from_name_and_shards
-from gptc.constants import RAFT_TO_EXECUTOR_PORT
+from gptc.serve.runtimes.asyncio import AsyncNewLoopRuntime
 
 if TYPE_CHECKING:
     import threading
@@ -191,6 +191,7 @@ def run_stateful(
     :param envs: a dictionary of environment variables to be set in the new Process
     """
     import signal
+
     from gptc.jaml import JAML
 
     is_ready = multiprocessing.Event()

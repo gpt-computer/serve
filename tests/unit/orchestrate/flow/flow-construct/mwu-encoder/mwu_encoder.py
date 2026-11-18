@@ -1,5 +1,4 @@
 import os
-
 from typing import Any
 
 from gptc import Executor, requests

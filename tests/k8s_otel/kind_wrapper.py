@@ -7,10 +7,10 @@ from contextlib import contextmanager
 from subprocess import CalledProcessError
 from typing import Generator
 
-import docker
-from docker import DockerClient
 from pytest_kind import KindCluster
 
+import docker
+from docker import DockerClient
 from gptc.logging.logger import GptcLogger
 
 

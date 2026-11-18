@@ -41,7 +41,7 @@ jobs:
           architecture: x64
       - name: Prepare envionment
         run: |
-          docker build -f Dockerfiles/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
+          docker build -f docker/test-pip.Dockerfile -t gptcomputer/gptc:test-pip .
           python -m pip install --upgrade pip
           python -m pip install wheel
           pip install ".[all]" --no-cache-dir

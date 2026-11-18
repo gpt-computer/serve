@@ -1,5 +1,6 @@
 import json
 from logging import LogRecord
+
 import pytest
 
 from gptc.logging.formatter import JsonFormatter, ProfileFormatter

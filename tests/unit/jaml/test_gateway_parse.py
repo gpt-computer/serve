@@ -2,8 +2,8 @@ import os
 
 import yaml
 
-from gptc.serve.runtimes.gateway.gateway import BaseGateway, Gateway
 from gptc.jaml import JAML
+from gptc.serve.runtimes.gateway.gateway import BaseGateway, Gateway
 
 
 class MyDummyGateway(Gateway):

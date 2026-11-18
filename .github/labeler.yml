@@ -11,7 +11,7 @@ area/setup:
   - extra-requirements.txt
   - requirements.txt
   - MANIFEST.in
-  - fastentrypoints.py
+  - docs/fastentrypoints.py
 
 area/core:
   - gptc/**/*
@@ -35,7 +35,7 @@ area/cicd:
   - .github/workflows/**/*
 
 area/docker:
-  - Dockerfiles/**/*
+  - docker/**/*
   - ./.dockerignore
 
 area/cli:

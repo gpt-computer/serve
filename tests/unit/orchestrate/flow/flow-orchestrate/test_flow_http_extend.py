@@ -1,6 +1,6 @@
 import pytest
 
-from gptc import Executor, requests, Flow
+from gptc import Executor, Flow, requests
 from gptc.excepts import BadClient
 
 

@@ -5,7 +5,7 @@ PKG_NAME=gptc
 VERSION=$(shell grep '^__version__' gptc/__init__.py | sed -n "s/.*=[[:space:]]*['\"]\([^'\"]*\)['\"].*/\1/p")
 PYTHON_REQUIRED=$(shell grep '^requires-python[[:space:]]*=' pyproject.toml | sed -n 's/.*"\([^"]*\)".*/\1/p')
 DOCKER=docker
-DOCKER_DIR=Dockerfiles
+DOCKER_DIR=docker
 SPHINXBUILD=.venv/bin/sphinx-build
 RED=\033[0;31m
 NC=\033[0m # No Color
@@ -45,7 +45,7 @@ audit: ## audit locked dependencies for known vulnerabilities
 help: ## show basic help message with common commands
 	@echo ''
 	@echo "$(GREEN)═══════════════════════════════════════════════════════════════════$(NC)"
-	@echo "$(GREEN)                      GPTC MAKEFILE COMMANDS                        $(NC)"
+	@echo "$(GREEN)                GPT::C0MPUTΞR MAKE COMMANDS                        $(NC)"
 	@echo "$(GREEN)═══════════════════════════════════════════════════════════════════$(NC)"
 	@echo ''
 	@echo "$(GREEN)Basic Commands:$(NC)"
@@ -196,11 +196,11 @@ build: build_sdist build_wheel ## build source and wheel distributions
 
 build_sdist: ## build a source distribution
 	@echo 'Building source distribution...'
-	uv run python setup.py sdist
+	uv build --sdist
 
 build_wheel: ## build a wheel distribution
 	@echo 'Building wheel distribution...'
-	uv run python setup.py bdist_wheel
+	uv build --wheel
 
 install_local: build ## install the freshly built wheel locally
 	uv pip install --force-reinstall dist/*.whl
@@ -223,7 +223,7 @@ verify-dist: build ## clean-environment check: build sdist+wheel, install wheel 
 FILE ?= debianx.Dockerfile
 IMAGE ?= gptc:$(VERSION)
 
-docker_build: ## build a Docker image from Dockerfiles/
+docker_build: ## build a Docker image from docker/
 	@echo 'BUILDING IMAGE: $(DOCKER_DIR)/$(FILE) -> $(IMAGE)'
 	@command -v $(DOCKER) >/dev/null 2>&1 || { echo "Error: $(DOCKER) is not installed. Try 'make docker_build DOCKER=docker'."; exit 1; }
 	@$(DOCKER) build --rm -f $(DOCKER_DIR)/$(FILE) -t $(IMAGE) .
@@ -297,7 +297,7 @@ help_docker: ## show Docker commands
 	@echo "$(GREEN)                      DOCKER COMMANDS                               $(NC)"
 	@echo "$(GREEN)═══════════════════════════════════════════════════════════════════$(NC)"
 	@echo ''
-	@echo "  $(GREEN)make docker_build$(NC)      - Build a Docker image from Dockerfiles/"
+	@echo "  $(GREEN)make docker_build$(NC)      - Build a Docker image from docker/"
 	@echo "  $(GREEN)make docker_dev$(NC)        - Start the development container"
 	@echo "  $(GREEN)make proto$(NC)             - Regenerate protobuf modules"
 	@echo "  $(GREEN)make verify-proto$(NC)      - Regenerate protobuf modules and fail if checked-in output differs"
