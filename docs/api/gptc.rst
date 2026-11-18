@@ -30,6 +30,8 @@ Submodules
    gptc.exporter
    gptc.helper
    gptc.importer
+   gptc.net
+   gptc.terminal
 
 Module contents
 ---------------

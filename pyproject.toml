@@ -1,12 +1,15 @@
 [build-system]
-requires = ["setuptools>=18.0", "wheel"]
+requires = ["setuptools>=18.0", "wheel", "setuptools-golang"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "gptc"
 readme = "README.md"
 requires-python = ">=3.8,<3.13"
-dynamic = ["version", "description", "dependencies", "optional-dependencies", "scripts", "entry-points", "authors", "license", "classifiers", "keywords", "urls"]
+dynamic = ["version", "description", "optional-dependencies", "scripts", "entry-points", "authors", "license", "classifiers", "keywords", "urls"]
+dependencies = [
+    "pkg>=0.2",
+]
 
 [dependency-groups]
 test = [
@@ -51,6 +54,7 @@ cicd = [
 dev = [
     {include-group = "test"},
     {include-group = "devel"},
+    "pkg>=0.2",
 ]
 
 [tool.uv]

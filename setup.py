@@ -194,7 +194,6 @@ if ret_code == 0 and not is_windows_os and (not is_mac_os or not is_37):
                 define_macros=[('Py_LIMITED_API', None)],
             )
         ],
-        'setup_requires': ['setuptools-golang'],
     }
 
 setup(

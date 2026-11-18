@@ -4,7 +4,8 @@ FROM ghcr.io/astral-sh/uv:python${PY_VERSION}-bookworm-slim
 
 ENV UV_LINK_MODE=copy \
     UV_PYTHON_DOWNLOADS=never \
-    UV_NO_CACHE=1
+    UV_NO_CACHE=1 \
+    UV_HTTP_TIMEOUT=300
 
 WORKDIR /gptc
 

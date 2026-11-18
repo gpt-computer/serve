@@ -1,7 +1,7 @@
 # Project Structure Analysis & Improvement Plan
 
 Repository: `gpt-computer/serve` (package `gptc`, a Jina-derived serving framework)
-Analyzed version: `3.34.1` (`gptc/__init__.py:79`) · Python `>=3.8,<3.13` (`pyproject.toml:8`)
+Analyzed version: `1.0.1` (`gptc/__init__.py:79`) · Python `>=3.8,<3.13` (`pyproject.toml:8`)
 
 ## 1. Scope and method
 
@@ -91,7 +91,7 @@ Severity: **P0** = correctness/CI is broken or user-facing documentation is wron
 | D2 | **44 of 54 redirect targets do not exist** (old `concepts/executor/*`, `concepts/flow/*`, `concepts/gateway/*` layout vs current `concepts/serving/*`, `concepts/orchestration/*`). | `docs/redirects.txt` |
 | D3 | Broken toctrees/links: `tutorials/deploy-pipeline`, `executor/index.md:53` `basics`, `hub/index.md:49` `yaml-spec`, `docs/yaml-spec.md:33,49`, stale Colab link; missing autosummary/apidoc templates (`class.rst`, `template/`). | `docs/index.md:167`, `docs/tutorials/index.md:5`, `docs/conf.py:144` |
 | D4 | `docs/conf.py:159` missing comma concatenates two ignore entries into one bogus string. | `docs/conf.py:159-160` |
-| D5 | Generated artifacts are stale/committed: `docs/_versions.json` newest is `v3.34.0` vs version 3.34.1; `docs/proto/` duplicates `gptc/proto/` with stale variants. | `docs/_versions.json`, `docs/proto/docs.md` |
+| D5 | Generated artifacts are stale/committed: `docs/_versions.json` newest is `v3.34.0` vs version 1.0.1; `docs/proto/` duplicates `gptc/proto/` with stale variants. | `docs/_versions.json`, `docs/proto/docs.md` |
 | D6 | Docs requirements include an unpinned VCS HEAD dependency and mixed pinning; `docs/index.md:16` still claims Python 3.7+. | `docs/requirements.txt:17`, `docs/index.md:16` |
 | D7 | Onboarding docs contradict reality: missing `.github/CODEOWNERS`, Python 3.7/3.8 + `pip install .[all]` vs uv workflow, `pip.Dockerfile` vs CI's `test-pip.Dockerfile`, stale doc links. | `CONTRIBUTING.md:48,214-218,243,272-274` |
 

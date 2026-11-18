@@ -70,7 +70,7 @@ No `pkg_resources.iter_entry_points` / `importlib.metadata.entry_points` plugin 
 
 ## 6. Version source
 
-`setup.py` reads `__version__` from `gptc/__init__.py:79` (`"3.34.1"`). `pyproject.toml` marks `version` as `dynamic`. `conda/meta.yaml` hardcodes `3.34.1` and is checked against `__init__.py` by `scripts/check-metadata.py`.
+`setup.py` reads `__version__` from `gptc/__init__.py:79` (`"1.0.1"`). `pyproject.toml` marks `version` as `dynamic`. `conda/meta.yaml` hardcodes `1.0.1` and is checked against `__init__.py` by `scripts/check-metadata.py`.
 
 **Constraint:** Keep `gptc/__init__.py`, `conda/meta.yaml`, and CI in sync. `make check_metadata` enforces this.
 

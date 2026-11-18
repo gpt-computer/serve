@@ -196,11 +196,11 @@ build: build_sdist build_wheel ## build source and wheel distributions
 
 build_sdist: ## build a source distribution
 	@echo 'Building source distribution...'
-	uv run python setup.py sdist
+	uv build --sdist
 
 build_wheel: ## build a wheel distribution
 	@echo 'Building wheel distribution...'
-	uv run python setup.py bdist_wheel
+	uv build --wheel
 
 install_local: build ## install the freshly built wheel locally
 	uv pip install --force-reinstall dist/*.whl

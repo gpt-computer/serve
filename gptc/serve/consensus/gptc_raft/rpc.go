@@ -8,8 +8,8 @@ import (
     "io"
 
     "github.com/Jille/raft-grpc-leader-rpc/rafterrors"
-    "github.com/golang/protobuf/proto"
-    empty "github.com/golang/protobuf/ptypes/empty"
+    "google.golang.org/protobuf/proto"
+    emptypb "google.golang.org/protobuf/types/known/emptypb"
 
     "github.com/hashicorp/raft"
     pb "jraft/gptc-go-proto"
@@ -114,12 +114,12 @@ func (rpc *RpcInterface) ProcessSingleData(
     }
 }
 
-func (rpc *RpcInterface) EndpointDiscovery(ctx context.Context, empty *empty.Empty) (*pb.EndpointsProto, error) {
+func (rpc *RpcInterface) EndpointDiscovery(ctx context.Context, empty *emptypb.Empty) (*pb.EndpointsProto, error) {
     rpc.Logger.Debug("Get an Endpoint Discovery Request")
     return rpc.Executor.EndpointDiscovery(ctx, empty)
 }
 
-func (rpc *RpcInterface) XStatus(ctx context.Context, empty *empty.Empty) (*pb.GptcInfoProto, error) {
+func (rpc *RpcInterface) XStatus(ctx context.Context, empty *emptypb.Empty) (*pb.GptcInfoProto, error) {
    rpc.Logger.Debug("Get an XStatus Request")
    return rpc.Executor.XStatus(ctx, empty)
 }
