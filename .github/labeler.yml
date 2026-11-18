@@ -1,0 +1,105 @@
+# Add 'label1' to any changes within 'example' folder or any subfolders
+area/docs:
+  - docs/**/*
+  - ./*.md
+
+area/testing:
+  - tests/**/*
+
+area/setup:
+  - setup.py
+  - extra-requirements.txt
+  - requirements.txt
+  - MANIFEST.in
+  - fastentrypoints.py
+
+area/core:
+  - gptc/**/*
+
+area/helper:
+  - gptc/*.py
+
+area/entrypoint:
+  - gptc/__init__.py
+
+
+area/network:
+  - gptc/peapods/**/*
+  - gptc/proto/**/*
+
+area/housekeeping:
+  - .github/**/*
+  - ./.gitignore
+
+area/cicd:
+  - .github/workflows/**/*
+
+area/docker:
+  - Dockerfiles/**/*
+  - ./.dockerignore
+
+area/cli:
+  - gptc_cli/**/*
+
+area/docarray:
+  - docarray/**/*
+
+area/script:
+  - script/**/*
+
+component/client:
+  - gptc/clients/**/*
+
+component/driver:
+  - gptc/drivers/**/*
+
+component/executor:
+  - gptc/executors/**/*
+
+component/docker:
+  - gptc/docker/**/*
+
+executor/meta:
+  - gptc/executors/*.py
+
+executor/encoder:
+  - gptc/executors/encoders/**/*
+
+executor/indexer:
+  - gptc/executors/indexers/**/*
+
+executor/ranker:
+  - gptc/executors/rankers/**/*
+
+executor/crafter:
+  - gptc/executors/crafters/**/*
+
+component/flow:
+  - gptc/flow/**/*
+
+component/logging:
+  - gptc/logging/**/*
+
+component/entrypoint:
+  - gptc/main/**/*
+
+component/peapod:
+  - gptc/peapods/**/*
+
+component/proto:
+  - gptc/proto/**/*
+
+component/type:
+  - gptc/types/**/*
+
+component/math:
+  - gptc/math/**/*
+
+component/resource:
+  - gptc/resources/**/*
+
+component/hub:
+  - gptc/hub/**/*
+
+component/jaml:
+  - gptc/jaml/**/*
