@@ -5,11 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "gptc"
 readme = "README.md"
-requires-python = ">=3.8,<3.13"
+requires-python = ">=3.8,<3.14"
 dynamic = ["version", "description", "optional-dependencies", "scripts", "entry-points", "authors", "license", "classifiers", "keywords", "urls"]
-dependencies = [
-    "pkg>=0.2",
-]
 
 [dependency-groups]
 test = [
@@ -54,16 +51,14 @@ cicd = [
 dev = [
     {include-group = "test"},
     {include-group = "devel"},
-    "pkg>=0.2",
 ]
 
 [tool.uv]
 default-groups = ["dev"]
-exclude-dependencies = ["gptc-hubble-sdk"]
-constraint-dependencies = ["docarray<0.22", "pydantic<2"]
+exclude-dependencies = []
+constraint-dependencies = ["docarray<0.22", "pydantic<2", "gptc-hubble-sdk==0.10.0"]
 
 [tool.uv.sources]
-gptc-hubble-sdk = { git = "https://github.com/gpt-computer/gptc-hubble-sdk" }
 
 [tool.black]
 line-length = 88

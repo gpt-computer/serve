@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 python:3.10-slim-bookworm
+FROM python:3.10-slim-bookworm
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
         build-essential git autoconf libtool wget unzip zlib1g-dev pkg-config cmake && \

@@ -104,7 +104,8 @@ def main():
             manifest_content = manifest.read()
             if 'include docs/fastentrypoints.py' not in manifest_content:
                 manifest.write(
-                    ('\n' if manifest_content else '') + 'include docs/fastentrypoints.py'
+                    ('\n' if manifest_content else '')
+                    + 'include docs/fastentrypoints.py'
                 )
 
         # Insert the import statement to setup.py if not present

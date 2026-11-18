@@ -2012,7 +2012,7 @@ wheels = [
 name = "gptc"
 source = { editable = "." }
 dependencies = [
-    { name = "pkg" },
+    { name = "docarray" },
 ]
 
 [package.optional-dependencies]
@@ -2626,7 +2626,6 @@ dev = [
     { name = "pillow", version = "11.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
     { name = "pillow", version = "12.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.10.*'" },
     { name = "pillow", version = "13.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "pkg" },
     { name = "pre-commit", version = "3.5.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
     { name = "pre-commit", version = "4.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
     { name = "pre-commit", version = "4.6.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.10.*'" },
@@ -2734,6 +2733,7 @@ requires-dist = [
     { name = "coverage", marker = "extra == 'all'", specifier = "==6.2" },
     { name = "coverage", marker = "extra == 'coverage'", specifier = "==6.2" },
     { name = "coverage", marker = "extra == 'test'", specifier = "==6.2" },
+    { name = "docarray", specifier = ">=0.21.1" },
     { name = "docarray", marker = "extra == 'all'", specifier = ">=0.16.4" },
     { name = "docarray", marker = "extra == 'core'", specifier = ">=0.16.4" },
     { name = "docarray", marker = "extra == 'docarray'", specifier = ">=0.16.4" },
@@ -2828,7 +2828,6 @@ requires-dist = [
     { name = "pillow", marker = "extra == 'all'" },
     { name = "pillow", marker = "extra == 'pillow'" },
     { name = "pillow", marker = "extra == 'test'" },
-    { name = "pkg", specifier = ">=0.2" },
     { name = "portforward", marker = "extra == 'all'", specifier = ">=0.2.4,<0.4.3" },
     { name = "portforward", marker = "extra == 'cicd'", specifier = ">=0.2.4,<0.4.3" },
     { name = "portforward", marker = "extra == 'portforward'", specifier = ">=0.2.4,<0.4.3" },
@@ -2930,7 +2929,7 @@ requires-dist = [
     { name = "websockets", marker = "extra == 'standard'" },
     { name = "websockets", marker = "extra == 'websockets'" },
 ]
-provides-extras = ["core", "numpy", "protobuf", "grpcio", "grpcio-reflection", "grpcio-health-checking", "pyyaml", "packaging", "docarray", "gptc-hubble-sdk", "jcloud", "opentelemetry-api", "opentelemetry-instrumentation-grpc", "perf", "devel", "standard", "uvloop", "prometheus-client", "opentelemetry-sdk", "opentelemetry-exporter-otlp", "opentelemetry-exporter-prometheus", "opentelemetry-instrumentation-aiohttp-client", "opentelemetry-instrumentation-fastapi", "opentelemetry-exporter-otlp-proto-grpc", "fastapi", "uvicorn", "docker", "pathspec", "filelock", "requests", "websockets", "pydantic", "python-multipart", "aiofiles", "aiohttp", "scipy", "test", "pillow", "pytest", "pytest-timeout", "pytest-mock", "pytest-cov", "coverage", "pytest-repeat", "pytest-asyncio", "pytest-reraise", "flaky", "mock", "requests-mock", "pytest-custom-exit-code", "black", "kubernetes", "pytest-kind", "pytest-lazy-fixture", "torch", "cicd", "psutil", "strawberry-graphql", "sgqlc", "bs4", "jsonschema", "portforward", "tensorflow", "opentelemetry-test-utils", "prometheus-api-client", "watchfiles", "urllib3", "all"]
+provides-extras = ["numpy", "core", "protobuf", "grpcio", "grpcio-reflection", "grpcio-health-checking", "pyyaml", "packaging", "docarray", "gptc-hubble-sdk", "jcloud", "opentelemetry-api", "opentelemetry-instrumentation-grpc", "devel", "perf", "uvloop", "standard", "prometheus-client", "opentelemetry-sdk", "opentelemetry-exporter-otlp", "opentelemetry-exporter-prometheus", "opentelemetry-instrumentation-aiohttp-client", "opentelemetry-instrumentation-fastapi", "opentelemetry-exporter-otlp-proto-grpc", "fastapi", "uvicorn", "docker", "pathspec", "filelock", "requests", "websockets", "pydantic", "python-multipart", "aiofiles", "aiohttp", "scipy", "test", "pillow", "pytest", "pytest-timeout", "pytest-mock", "pytest-cov", "coverage", "pytest-repeat", "pytest-asyncio", "pytest-reraise", "flaky", "mock", "requests-mock", "pytest-custom-exit-code", "black", "kubernetes", "pytest-kind", "pytest-lazy-fixture", "cicd", "torch", "psutil", "strawberry-graphql", "sgqlc", "bs4", "jsonschema", "portforward", "tensorflow", "opentelemetry-test-utils", "prometheus-api-client", "watchfiles", "urllib3", "all"]
 
 [package.metadata.requires-dev]
 cicd = [
@@ -2950,7 +2949,6 @@ dev = [
     { name = "mock" },
     { name = "opentelemetry-test-utils", specifier = ">=0.33b0" },
     { name = "pillow" },
-    { name = "pkg", specifier = ">=0.2" },
     { name = "pre-commit" },
     { name = "prometheus-api-client", specifier = ">=0.5.1" },
     { name = "psutil" },
@@ -6668,15 +6666,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/8e/ed/d504165ef79af6fafe25c76726cf30f544cc236002f7ed054f1d51adc4ff/pillow-13.0.0-pp312-pypy312_pp80-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:93ff9c9c3663ce23aaa5d0b6b6abac55359e2a0c06c7e30f3771829af816be63", size = 5464358, upload-time = "2026-10-16T22:18:02.779Z" },
     { url = "https://files.pythonhosted.org/packages/7b/fe/a10aba5503ca13e9e009b8bd0a1a4ce5584bdce246245fd6f3a83701369c/pillow-13.0.0-pp312-pypy312_pp80-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:e65dd6e75de67b2362a4fa3e16aa627595f65054dc4ec73d64680c84d592fa61", size = 6043514, upload-time = "2026-10-16T22:18:04.538Z" },
     { url = "https://files.pythonhosted.org/packages/c0/37/66b12dc476041fe523bca29c9d58fbf1ea92a4eaf73acfb9e993948f1191/pillow-13.0.0-pp312-pypy312_pp80-win_amd64.whl", hash = "sha256:567f20f1c75897d7663830da6ea8af719e03d712b1d9ee7f813319f9ece42e5a", size = 7366030, upload-time = "2026-10-16T22:18:06.638Z" },
-]
-
-[[package]]
-name = "pkg"
-version = "0.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/36/ac/c3fab959d62ed830a807c750596fa07932e6d2bd12b2c2743ae290bd9366/pkg-0.2.tar.gz", hash = "sha256:809e0221e41be4619ae412f56826e5a87c616abf9168838b170ead5db4a4118e", size = 10792, upload-time = "2020-04-06T18:49:49.124Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/41/86/2908a6096a80c519f1ecb7793344a53e127be4ad601864097f72a317f7cf/pkg-0.2-py3-none-any.whl", hash = "sha256:88849f47c7c4f5242f7190da896133613229ff17198c84d463b0ad8d458363f0", size = 15447, upload-time = "2020-04-06T18:49:46.665Z" },
 ]
 
 [[package]]
