@@ -1,0 +1,158 @@
+{% set name = "gptc" %}
+{% set version = "3.34.1" %}
+
+package:
+  name: {{ name|lower }}-split
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  # Refresh from the published sdist at release time.
+  sha256: 1d003951060845d4fa55497013a7a583c24c502296f95604b9a5c03e73c242f5
+
+build:
+  number: 0
+
+outputs:
+  - name: gptc-core
+    build:
+      noarch: python
+      entry_points:
+        - gptc = gptc_cli:main
+      script: python -m pip install . --no-deps -vv
+      script_env:
+        - GPTC_PIP_INSTALL_CORE=1
+    test:
+      requires:
+        - pip
+      imports:
+        - gptc
+      commands:
+        - pip check
+        - gptc --version
+    requirements:
+      host:
+        - python >=3.8
+        - pip
+      run:
+        - __unix
+        - python >=3.8
+        - docarray >=0.16.4
+        - grpcio >=1.46.0,<=1.68.0
+        - grpcio-health-checking >=1.46.0,<=1.68.0
+        - grpcio-reflection >=1.46.0,<=1.68.0
+        - gptc-hubble-sdk >=0.30.4
+        - numpy
+        - opentelemetry-api >=1.12.0
+        - opentelemetry-instrumentation-grpc >=0.33b0
+        - packaging >=20.0
+        - protobuf >=3.20.0
+        - pyyaml >=5.3.1
+  - name: gptc-perf
+    test:
+      requires:
+        - pip
+      imports:
+        - gptc
+      commands:
+        - pip check
+        - gptc --version
+    build:
+      noarch: python
+      entry_points:
+        - gptc = gptc_cli:main
+      script: python -m pip install . --no-deps -vv
+      script_env:
+        - GPTC_PIP_INSTALL_PERF=1
+    requirements:
+      host:
+        - python >=3.8
+        - pip
+      run:
+        - __unix
+        - python >=3.8
+        - docarray >=0.16.4
+        - grpcio >=1.46.0,<=1.68.0
+        - grpcio-health-checking >=1.46.0,<=1.68.0
+        - grpcio-reflection >=1.46.0,<=1.68.0
+        - gptc-hubble-sdk >=0.30.4
+        - numpy
+        - opentelemetry-api >=1.12.0
+        - opentelemetry-exporter-otlp >=1.12.0
+        - opentelemetry-instrumentation-aiohttp-client >=0.33b0
+        - opentelemetry-instrumentation-fastapi >=0.33b0
+        - opentelemetry-instrumentation-grpc >=0.33b0
+        - opentelemetry-sdk >=1.12.0
+        - opentelemetry-semantic-conventions >=0.33b0
+        - packaging >=20.0
+        - prometheus_client
+        - protobuf >=3.20.0
+        - pyyaml >=5.3.1
+        - uvloop
+  - name: gptc
+    test:
+      requires:
+        - pip
+      imports:
+        - gptc
+      commands:
+        - pip check
+        - gptc --version
+    build:
+      noarch: python
+      entry_points:
+        - gptc = gptc_cli:main
+      script: python -m pip install . --no-deps -vv
+    requirements:
+      host:
+        - python >=3.8
+        - pip
+      run:
+        - __unix
+        - python >=3.8
+        - aiofiles
+        - aiohttp
+        - aiostream
+        - cryptography
+        - docarray >=0.16.4
+        - docker-py
+        - fastapi >=0.76.0
+        - filelock
+        - grpcio >=1.46.0,<=1.68.0
+        - grpcio-health-checking >=1.46.0,<=1.68.0
+        - grpcio-reflection >=1.46.0,<=1.68.0
+        - gptc-hubble-sdk >=0.30.4
+        - numpy
+        - opentelemetry-api >=1.12.0
+        - opentelemetry-exporter-otlp >=1.12.0
+        - opentelemetry-instrumentation-aiohttp-client >=0.33b0
+        - opentelemetry-instrumentation-fastapi >=0.33b0
+        - opentelemetry-instrumentation-grpc >=0.33b0
+        - opentelemetry-sdk >=1.12.0
+        - opentelemetry-semantic-conventions >=0.33b0
+        - packaging >=20.0
+        - pathspec
+        - prometheus_client
+        - protobuf >=3.20.0
+        - pydantic
+        - python-multipart
+        - pyyaml >=5.3.1
+        - requests
+        - uvicorn
+        - uvloop
+        - websockets
+
+about:
+  home: https://github.com/gpt-computer/gptc/
+  license: Apache-2.0
+  license_family: Apache
+  license_file: LICENSE
+  summary: "Build multimodal AI services via cloud native technologies \xB7 Neural Search \xB7 Generative AI \xB7 Cloud Native"
+  doc_url: https://gpt-computer.github.io/serve
+
+extra:
+  recipe-maintainers:
+    - JoanFM
+    - nan-wang
+    - hanxiao
+  feedstock-name: gptc

@@ -1,0 +1,59 @@
+repos:
+-   repo: https://github.com/pycqa/flake8
+    rev: 4.0.1
+    hooks:
+    -   id: flake8
+        exclude: ^(.git|__pycache__|docs/source/conf.py|old|build|dist|tests|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2)
+        args:
+          - --max-complexity=10
+          - --max-line-length=127
+          - --select=E9,F63,F7,F82
+- repo: https://github.com/terrencepreilly/darglint
+  rev: v1.5.8
+  hooks:
+  - id: darglint
+    files: gptc/
+    exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2)
+    args:
+    - --message-template={path}:{line} {msg_id} {msg}
+    - -s=sphinx
+    - -z=full
+    - -v=2
+- repo: https://github.com/pycqa/pydocstyle
+  rev: 5.1.1  # pick a git hash / tag to point to
+  hooks:
+  -   id: pydocstyle
+      files: gptc/
+      exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2)
+      args:
+      - --select=D101,D102,D103
+- repo: https://github.com/psf/black
+  rev: 24.3.0
+  hooks:
+  - id: black
+    types: [python]
+    exclude: ^(gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2)
+    args:
+      - -S
+- repo: https://github.com/asottile/blacken-docs
+  rev: v1.12.1
+  hooks:
+  -   id: blacken-docs
+      exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2)
+      args:
+        - -S
+- repo: https://github.com/pycqa/isort
+  rev: 5.12.0
+  hooks:
+    - id: isort
+      exclude: ^(gptc/helloworld/|gptc/proto/pb/gptc_pb2.py|gptc/proto/pb/gptc_pb2_grpc.py|gptc/proto/pb2/gptc_pb2.py|gptc/proto/pb2/gptc_pb2_grpc.py|docs/|gptc/resources/|gptc/proto/docarray_v1|gptc/proto/docarray_v2)
+      args: ["--profile", "black"]
+- repo: local
+  hooks:
+  - id: autocomplete-drift-check
+    name: Check CLI autocomplete drift
+    entry: python scripts/update-autocomplete-cli.py --check
+    language: system
+    pass_filenames: false
+    files: '^gptc/parsers/|^gptc_cli/autocomplete.py$|^scripts/update-autocomplete-cli.py$'
+
