@@ -107,6 +107,9 @@ devel = [
     "strawberry-graphql>=0.96.0",
     "sgqlc",
 ]
+black = [
+    "black==24.3.0",
+]
 cicd = [
     "torch",
     "strawberry-graphql>=0.96.0",
