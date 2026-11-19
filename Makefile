@@ -114,7 +114,7 @@ clean_python_cache: ## remove Python cache files
 	find . -type f -name '*.py[cod]' -exec rm -f {} +
 	find . -type f -name '*~' -exec rm -f {} +
 	$(call CLEAR_DIRS,.pytest_cache .mypy_cache .ruff_cache htmlcov cover)
-	rm -f .darglint .coverage coverage.xml .coverage.*
+	rm -f .darglint .coverage coverage.xml
 	@echo "$(GREEN)Python cache cleaned.$(NC)"
 
 clean_build: ## remove build distributions and egg-info
