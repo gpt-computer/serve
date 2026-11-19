@@ -106,13 +106,13 @@ clean_python_cache: ## remove Python cache files
 	find . -type d -name '__pycache__' -exec rm -r {} +
 	find . -type f -name '*.py[cod]' -exec rm -f {} +
 	find . -type f -name '*~' -exec rm -f {} +
-	$(call CLEAR_DIRS,.pytest_cache .mypy_cache)
-	rm -f .coverage coverage.xml
+	$(call CLEAR_DIRS,.pytest_cache .mypy_cache .ruff_cache htmlcov cover)
+	rm -f .darglint .coverage coverage.xml .coverage.*
 	@echo "$(GREEN)Python cache cleaned.$(NC)"
 
 clean_build: ## remove build distributions and egg-info
 	@echo "Cleaning build artifacts..."
-	$(call CLEAR_DIRS,build dist gptc.egg-info)
+	$(call CLEAR_DIRS,build dist gptc.egg-info .eggs)
 	@echo "$(GREEN)Build artifacts cleaned.$(NC)"
 
 clean_docs: ## remove built documentation
@@ -209,7 +209,7 @@ verify-dist: build ## clean-environment check: build sdist+wheel, install wheel 
 	@echo 'Verifying distributions in a clean environment...'
 	@tmp_dir=$$(mktemp -d); \
 	uv venv $$tmp_dir/venv --seed; \
-	$$tmp_dir/venv/bin/pip install --quiet dist/*.whl; \
+	uv pip install --python $$tmp_dir/venv/bin/python --quiet dist/*.whl; \
 	$$tmp_dir/venv/bin/python -c "import gptc; print('gptc', gptc.__version__)"; \
 	$$tmp_dir/venv/bin/python -c "import jraft; print('jraft ok')"; \
 	rm -rf $$tmp_dir; \
