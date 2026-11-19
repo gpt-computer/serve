@@ -41,10 +41,13 @@ requires_python = re.search(r'^requires-python\s*=\s*"([^"]+)"', pyproject, re.M
 require('>=3.8' in requires_python, f'unexpected requires-python: {requires_python}')
 require('python >=3.8' in conda_recipe, 'conda recipe must require python >=3.8')
 require('Python :: 3.7' not in setup_py, 'setup.py still advertises Python 3.7')
-require('Python :: 3.12' in setup_py, 'setup.py must advertise Python 3.12')
+require(
+    '"Programming Language :: Python :: 3.12"' in pyproject,
+    'pyproject.toml must advertise Python 3.12',
+)
 
 require(
-    "gptc=gptc_cli:main" in setup_py, 'setup.py console script must be gptc_cli:main'
+    "gptc = \"gptc_cli:main\"" in pyproject, 'pyproject.toml console script must be gptc_cli:main'
 )
 require(
     'gptc = gptc_cli:main' in conda_recipe, 'conda entry point must be gptc_cli:main'
