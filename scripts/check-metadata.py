@@ -34,6 +34,11 @@ require(
     version == conda_version,
     f'conda version {conda_version} != package version {version}',
 )
+project_version = re.search(r'^version\s*=\s*"([^"]+)"', pyproject, re.M).group(1)
+require(
+    project_version == version,
+    f'pyproject.toml version {project_version} != package version {version}',
+)
 
 requires_python = re.search(r'^requires-python\s*=\s*"([^"]+)"', pyproject, re.M).group(
     1

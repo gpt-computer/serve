@@ -199,7 +199,7 @@ gateway: install ## start a standalone gateway
 # BUILD
 ######################
 
-build: build_sdist build_wheel ## build source and wheel distributions
+build: check_metadata build_sdist build_wheel ## build source and wheel distributions
 
 build_sdist: ## build a source distribution
 	@echo 'Building source distribution...'
