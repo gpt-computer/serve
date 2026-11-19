@@ -254,7 +254,6 @@ dev = [
 [tool.uv]
 default-groups = ["dev"]
 constraint-dependencies = ["docarray>=0.16.4", "pydantic<2", "gptc-hubble-sdk==0.10.0"]
-exclude-dependencies = []
 
 [tool.uv.sources]
 
