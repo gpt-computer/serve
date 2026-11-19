@@ -38,7 +38,7 @@ require(
 requires_python = re.search(r'^requires-python\s*=\s*"([^"]+)"', pyproject, re.M).group(
     1
 )
-require('>=3.8' in requires_python, f'unexpected requires-python: {requires_python}')
+require('>=3.10' in requires_python, f'unexpected requires-python: {requires_python}')
 require('python >=3.8' in conda_recipe, 'conda recipe must require python >=3.8')
 require('Python :: 3.7' not in setup_py, 'setup.py still advertises Python 3.7')
 require(
