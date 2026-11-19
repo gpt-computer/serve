@@ -1,7 +1,9 @@
 import os
 import platform
+import re
 import subprocess
 import sys
+from collections import defaultdict
 from os import path
 
 from setuptools import Extension, find_packages, setup
@@ -25,6 +27,63 @@ try:
     exec(version_line)  # gives __version__
 except FileNotFoundError:
     __version__ = '0.0.0'
+
+
+def get_extra_requires(path, add_all=True):
+    import re
+
+    try:
+        with open(path, encoding='utf-8') as fp:
+            extra_deps = defaultdict(set)
+            for k in fp:
+                if k.strip() and not k.startswith('#'):
+                    tags = set()
+                    if ':' in k:
+                        k, v = k.split(':')
+                        tags.update(vv.strip() for vv in v.split(','))
+                    tags.add(re.split('[<=>]', k)[0])
+                    for t in tags:
+                        extra_deps[t].add(k)
+
+            # add tag `all` at the end
+            if add_all:
+                extra_deps['all'] = set(vv for v in extra_deps.values() for vv in v)
+
+        return extra_deps
+    except FileNotFoundError:
+        return {}
+
+
+all_deps = get_extra_requires('extra-requirements.txt')
+
+core_deps = all_deps['core']
+perf_deps = all_deps['perf'].union(core_deps)
+standard_deps = all_deps['standard'].union(core_deps).union(perf_deps)
+
+# uvloop is not supported on windows
+perf_deps = {
+    i + ";platform_system!='Windows'" if i.startswith('uvloop') else i
+    for i in perf_deps
+}
+standard_deps = {
+    i + ";platform_system!='Windows'" if i.startswith('uvloop') else i
+    for i in standard_deps
+}
+for k in ['all', 'devel', 'cicd']:
+    all_deps[k] = {
+        i + ";platform_system!='Windows'" if i.startswith('uvloop') else i
+        for i in all_deps[k]
+    }
+
+# by default, final deps is the standard deps, unless specified by env otherwise
+# GPTC_PIP_INSTALL_CORE=1 pip install gptc
+# GPTC_PIP_INSTALL_PERF=1 pip install gptc
+final_deps = standard_deps
+
+if os.environ.get('GPTC_PIP_INSTALL_CORE'):
+    final_deps = core_deps
+elif os.environ.get('GPTC_PIP_INSTALL_PERF'):
+    final_deps = perf_deps
 
 
 def register_ac():
@@ -115,6 +174,7 @@ setup(
     name=pkg_name,
     version=__version__,
     packages=find_packages(),
+    install_requires=list(final_deps),
     cmdclass={
         'develop': PostDevelopCommand,
         'install': PostInstallCommand,

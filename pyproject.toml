@@ -5,6 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "gptc"
 version = "1.0.1"
+dynamic = ["dependencies"]
 description = "Multimodal AI services & pipelines with cloud-native stack: gRPC, Kubernetes, Docker, OpenTelemetry, Prometheus, Jaeger, etc."
 readme = "README.md"
 requires-python = ">=3.10,<3.14"
@@ -41,22 +42,6 @@ classifiers = [
     "Topic :: Software Development",
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
-]
-
-dependencies = [
-    "docarray>=0.21.1",
-    "gptc-hubble-sdk>=0.10.0",
-    "grpcio>=1.68.0",
-    "grpcio-health-checking>=1.62.3",
-    "grpcio-reflection>=1.62.3",
-    "jcloud>=0.3",
-    "numpy>=1.24.4",
-    "opentelemetry-api>=1.33.1",
-    "packaging>=26.2",
-    "protobuf>=5.29.6",
-    "pydantic>=1.10.27",
-    "pyyaml>=6.0.3",
-    "urllib3>=2.8.0",
 ]
 
 [project.urls]
