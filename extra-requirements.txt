@@ -1,8 +1,13 @@
-# DEPRECATED: This file is no longer used by the build.
-# All dependency metadata now lives in pyproject.toml ([project.dependencies]
-# and [project.optional-dependencies]).
+# DEPRECATED: setuptools/pyproject.toml no longer read this file.
+# All package dependency metadata now lives in pyproject.toml
+# ([project.dependencies] and [project.optional-dependencies]).
 #
-# Kept only for historical reference. Do not edit; changes here have no effect.
+# The conda recipe generator (scripts/create-conda-recipe.py) still
+# consumes its tags for runtime requirements, so keep this file
+# editable until that generator migrates to pyproject.toml.
+#
+# check-metadata.py also validates tags here (core/perf/standard/all,
+# misspelled "standrad").
 #
 # Original header below (preserved for reference):
 #
