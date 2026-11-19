@@ -25,7 +25,9 @@ all: help
 ######################
 
 # Clear directory contents in place (mount points in devcontainers must not be removed).
-CLEAR_DIRS = $(foreach dir,$1,$(shell mkdir -p $(dir) && find $(dir) -mindepth 1 -delete))
+# Commands run in the recipe shell at execution time, not during Make expansion,
+# so dry runs do not delete anything.
+CLEAR_DIRS = $(foreach dir,$1,mkdir -p $(dir) && find $(dir) -mindepth 1 -delete;)
 
 check_tools: ## verify required tools are available
 	@command -v uv >/dev/null 2>&1 || { echo >&2 "$(RED)uv is not installed. Aborting.$(NC)"; exit 1; }
