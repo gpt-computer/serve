@@ -210,13 +210,13 @@ build_wheel: ## build a wheel distribution
 	uv build --wheel
 
 install_local: build ## install the freshly built wheel locally
-	uv pip install --force-reinstall dist/*.whl
+	@if [ -n "$$PIP_INDEX_URL" ]; then uv pip install --force-reinstall --index-url "$$PIP_INDEX_URL" dist/*.whl; else uv pip install --force-reinstall dist/*.whl; fi
 
 verify-dist: build ## clean-environment check: build sdist+wheel, install wheel into a fresh venv, smoke-test imports
 	@echo 'Verifying distributions in a clean environment...'
 	@tmp_dir=$$(mktemp -d); \
 	uv venv $$tmp_dir/venv --seed; \
-	uv pip install --python $$tmp_dir/venv/bin/python --quiet dist/*.whl; \
+	uv pip install --python $$tmp_dir/venv/bin/python --quiet $$([ -n "$$PIP_INDEX_URL" ] && echo "--index-url $$PIP_INDEX_URL") dist/*.whl; \
 	$$tmp_dir/venv/bin/python -c "import gptc; print('gptc', gptc.__version__)"; \
 	$$tmp_dir/venv/bin/python -c "import jraft; print('jraft ok')"; \
 	rm -rf $$tmp_dir; \
