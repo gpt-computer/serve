@@ -40,7 +40,7 @@ typecheck: ## run scoped static type checks
 
 audit: ## audit locked dependencies for known vulnerabilities
 	@uv export --frozen --no-dev --no-emit-project --format requirements-txt -o /tmp/gptc-requirements.txt
-	@uvx pip-audit -r /tmp/gptc-requirements.txt \
+	@uvx pip-audit -r /tmp/gptc-requirements.txt --timeout 60 \
 		--ignore-vuln PYSEC-2026-1308 \
 		--ignore-vuln PYSEC-2026-1325 \
 		--ignore-vuln PYSEC-2026-3447 \
