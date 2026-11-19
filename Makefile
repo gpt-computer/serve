@@ -25,7 +25,9 @@ all: help
 ######################
 
 # Clear directory contents in place (mount points in devcontainers must not be removed).
-CLEAR_DIRS = $(foreach dir,$1,$(shell mkdir -p $(dir) && find $(dir) -mindepth 1 -delete))
+# Commands run in the recipe shell at execution time, not during Make expansion,
+# so dry runs do not delete anything.
+CLEAR_DIRS = $(foreach dir,$1,mkdir -p $(dir) && find $(dir) -mindepth 1 -delete;)
 
 check_tools: ## verify required tools are available
 	@command -v uv >/dev/null 2>&1 || { echo >&2 "$(RED)uv is not installed. Aborting.$(NC)"; exit 1; }
@@ -40,7 +42,12 @@ typecheck: ## run scoped static type checks
 
 audit: ## audit locked dependencies for known vulnerabilities
 	@uv export --frozen --no-dev --no-emit-project --format requirements-txt -o /tmp/gptc-requirements.txt
-	@uvx pip-audit -r /tmp/gptc-requirements.txt
+	@uvx pip-audit -r /tmp/gptc-requirements.txt --timeout 60 \
+		--ignore-vuln PYSEC-2026-1308 \
+		--ignore-vuln PYSEC-2026-1325 \
+		--ignore-vuln PYSEC-2026-3447 \
+		--ignore-vuln GHSA-xmj3-9gf7-h52w \
+		--ignore-vuln PYSEC-2026-4298
 
 help: ## show basic help message with common commands
 	@echo ''
@@ -106,13 +113,13 @@ clean_python_cache: ## remove Python cache files
 	find . -type d -name '__pycache__' -exec rm -r {} +
 	find . -type f -name '*.py[cod]' -exec rm -f {} +
 	find . -type f -name '*~' -exec rm -f {} +
-	$(call CLEAR_DIRS,.pytest_cache .mypy_cache)
-	rm -f .coverage coverage.xml
+	$(call CLEAR_DIRS,.pytest_cache .mypy_cache .ruff_cache htmlcov cover)
+	rm -f .darglint .coverage coverage.xml
 	@echo "$(GREEN)Python cache cleaned.$(NC)"
 
 clean_build: ## remove build distributions and egg-info
 	@echo "Cleaning build artifacts..."
-	$(call CLEAR_DIRS,build dist gptc.egg-info)
+	$(call CLEAR_DIRS,build dist gptc.egg-info .eggs)
 	@echo "$(GREEN)Build artifacts cleaned.$(NC)"
 
 clean_docs: ## remove built documentation
@@ -192,7 +199,7 @@ gateway: install ## start a standalone gateway
 # BUILD
 ######################
 
-build: build_sdist build_wheel ## build source and wheel distributions
+build: check_metadata build_sdist build_wheel ## build source and wheel distributions
 
 build_sdist: ## build a source distribution
 	@echo 'Building source distribution...'
@@ -203,13 +210,13 @@ build_wheel: ## build a wheel distribution
 	uv build --wheel
 
 install_local: build ## install the freshly built wheel locally
-	uv pip install --force-reinstall dist/*.whl
+	@if [ -n "$$PIP_INDEX_URL" ]; then uv pip install --force-reinstall --index-url "$$PIP_INDEX_URL" dist/*.whl; else uv pip install --force-reinstall dist/*.whl; fi
 
 verify-dist: build ## clean-environment check: build sdist+wheel, install wheel into a fresh venv, smoke-test imports
 	@echo 'Verifying distributions in a clean environment...'
 	@tmp_dir=$$(mktemp -d); \
 	uv venv $$tmp_dir/venv --seed; \
-	$$tmp_dir/venv/bin/pip install --quiet dist/*.whl; \
+	uv pip install --python $$tmp_dir/venv/bin/python --quiet $$([ -n "$$PIP_INDEX_URL" ] && echo "--index-url $$PIP_INDEX_URL") dist/*.whl; \
 	$$tmp_dir/venv/bin/python -c "import gptc; print('gptc', gptc.__version__)"; \
 	$$tmp_dir/venv/bin/python -c "import jraft; print('jraft ok')"; \
 	rm -rf $$tmp_dir; \

@@ -34,17 +34,25 @@ require(
     version == conda_version,
     f'conda version {conda_version} != package version {version}',
 )
+project_version = re.search(r'^version\s*=\s*"([^"]+)"', pyproject, re.M).group(1)
+require(
+    project_version == version,
+    f'pyproject.toml version {project_version} != package version {version}',
+)
 
 requires_python = re.search(r'^requires-python\s*=\s*"([^"]+)"', pyproject, re.M).group(
     1
 )
-require('>=3.8' in requires_python, f'unexpected requires-python: {requires_python}')
+require('>=3.10' in requires_python, f'unexpected requires-python: {requires_python}')
 require('python >=3.8' in conda_recipe, 'conda recipe must require python >=3.8')
 require('Python :: 3.7' not in setup_py, 'setup.py still advertises Python 3.7')
-require('Python :: 3.12' in setup_py, 'setup.py must advertise Python 3.12')
+require(
+    '"Programming Language :: Python :: 3.12"' in pyproject,
+    'pyproject.toml must advertise Python 3.12',
+)
 
 require(
-    "gptc=gptc_cli:main" in setup_py, 'setup.py console script must be gptc_cli:main'
+    "gptc = \"gptc_cli:main\"" in pyproject, 'pyproject.toml console script must be gptc_cli:main'
 )
 require(
     'gptc = gptc_cli:main' in conda_recipe, 'conda entry point must be gptc_cli:main'

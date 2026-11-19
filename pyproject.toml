@@ -1,29 +1,138 @@
 [build-system]
-requires = ["setuptools>=18.0", "wheel", "setuptools-golang"]
+requires = ["setuptools>=84.1.0", "wheel", "setuptools-golang"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "gptc"
+version = "1.0.1"
+dynamic = ["dependencies"]
+description = "Multimodal AI services & pipelines with cloud-native stack: gRPC, Kubernetes, Docker, OpenTelemetry, Prometheus, Jaeger, etc."
 readme = "README.md"
-requires-python = ">=3.8,<3.14"
-dynamic = ["version", "description", "optional-dependencies", "scripts", "entry-points", "authors", "license", "classifiers", "keywords", "urls"]
-dependencies = [
-    "docarray>=0.21.1",
-    "gptc-hubble-sdk>=0.10.0",
-    "grpcio>=1.68.0",
-    "grpcio-health-checking>=1.62.3",
-    "grpcio-reflection>=1.62.3",
-    "jcloud>=0.3",
-    "numpy>=1.24.4",
-    "opentelemetry-api>=1.33.1",
-    "packaging>=26.2",
-    "protobuf>=5.29.6",
-    "pydantic>=1.10.27",
-    "pyyaml>=6.0.3",
+requires-python = ">=3.10,<3.14"
+license = {text = "Apache 2.0"}
+authors = [{name = "GPT::C0MPUTΞR", email = "hello@khulnasoft.com"}]
+keywords = [
+    "gptc", "cloud-native", "cross-modal", "multimodal", "neural-search",
+    "query", "search", "index", "elastic", "neural-network", "encoding",
+    "embedding", "serving", "docker", "container", "image", "video", "audio",
+    "deep-learning", "mlops",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Unix Shell",
+    "Environment :: Console",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Topic :: Database :: Database Engines/Servers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
-[dependency-groups]
+[project.urls]
+Documentation = "https://gpt-computer.github.io/serve"
+Source = "https://github.com/gpt-computer/gptc/"
+Tracker = "https://github.com/gpt-computer/gptc/issues"
+[project.optional-dependencies]
+core = [
+    "docarray>=0.16.4",
+    "gptc-hubble-sdk>=0.10.0",
+    "grpcio>=1.46.0,<=1.68.0",
+    "grpcio-health-checking>=1.46.0,<=1.68.0",
+    "grpcio-reflection>=1.46.0,<=1.68.0",
+    "jcloud>=0.0.35",
+    "numpy",
+    "opentelemetry-api>=1.12.0",
+    "opentelemetry-instrumentation-grpc>=0.35b0",
+    "packaging>=20.0",
+    "protobuf>=3.19.0",
+    "pydantic<3.0.0",
+    "pyyaml>=5.3.1",
+    "urllib3>=2.8.0",
+]
+perf = [
+    "uvloop;platform_system!='Windows'",
+    "prometheus-client>=0.12.0",
+    "opentelemetry-sdk>=1.14.0",
+    "opentelemetry-exporter-otlp>=1.12.0",
+    "opentelemetry-exporter-prometheus>=0.33b0",
+    "opentelemetry-instrumentation-aiohttp-client>=0.33b0",
+    "opentelemetry-instrumentation-fastapi>=0.33b0",
+    "opentelemetry-exporter-otlp-proto-grpc>=1.13.0",
+]
+standard = [
+    "uvloop;platform_system!='Windows'",
+    "prometheus-client>=0.12.0",
+    "opentelemetry-sdk>=1.14.0",
+    "opentelemetry-exporter-otlp>=1.12.0",
+    "opentelemetry-exporter-prometheus>=0.33b0",
+    "opentelemetry-instrumentation-aiohttp-client>=0.33b0",
+    "opentelemetry-instrumentation-fastapi>=0.33b0",
+    "opentelemetry-exporter-otlp-proto-grpc>=1.13.0",
+    "fastapi>=0.76.0",
+    "uvicorn<=0.23.1",
+    "docker",
+    "pathspec",
+    "filelock",
+    "requests",
+    "websockets",
+    "python-multipart",
+    "aiofiles",
+    "aiohttp",
+]
+devel = [
+    "uvloop;platform_system!='Windows'",
+    "prometheus-client>=0.12.0",
+    "opentelemetry-sdk>=1.14.0",
+    "opentelemetry-exporter-otlp>=1.12.0",
+    "opentelemetry-exporter-prometheus>=0.33b0",
+    "opentelemetry-instrumentation-aiohttp-client>=0.33b0",
+    "opentelemetry-instrumentation-fastapi>=0.33b0",
+    "opentelemetry-exporter-otlp-proto-grpc>=1.13.0",
+    "fastapi>=0.76.0",
+    "uvicorn<=0.23.1",
+    "docker",
+    "pathspec",
+    "filelock",
+    "requests",
+    "websockets",
+    "python-multipart",
+    "aiofiles",
+    "aiohttp",
+    "watchfiles>=0.18.0",
+    "strawberry-graphql>=0.96.0",
+    "sgqlc",
+]
+black = [
+    "black==24.3.0",
+]
+cicd = [
+    "torch",
+    "strawberry-graphql>=0.96.0",
+    "sgqlc",
+    "bs4",
+    "jsonschema",
+    "portforward>=0.2.4,<0.4.3",
+    "tensorflow>=2.0",
+]
 test = [
+    "scipy>=1.6.1",
+    "Pillow",
     "pytest<8.0.0",
     "pytest-timeout",
     "pytest-mock",
@@ -40,15 +149,103 @@ test = [
     "kubernetes>=18.20.0,<31.0.0",
     "pytest-kind==22.11.1",
     "pytest-lazy-fixture",
+    "psutil",
+    "opentelemetry-test-utils>=0.33b0",
+    "prometheus-api-client>=0.5.1",
+]
+all = [
+    "docarray>=0.16.4",
+    "gptc-hubble-sdk>=0.10.0",
+    "grpcio>=1.46.0,<=1.68.0",
+    "grpcio-health-checking>=1.46.0,<=1.68.0",
+    "grpcio-reflection>=1.46.0,<=1.68.0",
+    "jcloud>=0.0.35",
+    "numpy",
+    "opentelemetry-api>=1.12.0",
+    "opentelemetry-instrumentation-grpc>=0.35b0",
+    "packaging>=20.0",
+    "protobuf>=3.19.0",
+    "pydantic<3.0.0",
+    "pyyaml>=5.3.1",
+    "urllib3>=2.8.0",
+    "uvloop;platform_system!='Windows'",
+    "prometheus-client>=0.12.0",
+    "opentelemetry-sdk>=1.14.0",
+    "opentelemetry-exporter-otlp>=1.12.0",
+    "opentelemetry-exporter-prometheus>=0.33b0",
+    "opentelemetry-instrumentation-aiohttp-client>=0.33b0",
+    "opentelemetry-instrumentation-fastapi>=0.33b0",
+    "opentelemetry-exporter-otlp-proto-grpc>=1.13.0",
+    "fastapi>=0.76.0",
+    "uvicorn<=0.23.1",
+    "docker",
+    "pathspec",
+    "filelock",
+    "requests",
+    "websockets",
+    "python-multipart",
+    "aiofiles",
+    "aiohttp",
+    "watchfiles>=0.18.0",
+    "strawberry-graphql>=0.96.0",
+    "sgqlc",
+    "torch",
+    "bs4",
+    "jsonschema",
+    "portforward>=0.2.4,<0.4.3",
+    "tensorflow>=2.0",
     "scipy>=1.6.1",
     "Pillow",
+    "pytest<8.0.0",
+    "pytest-timeout",
+    "pytest-mock",
+    "pytest-cov==3.0.0",
+    "coverage==6.2",
+    "pytest-repeat",
+    "pytest-asyncio<0.23.0",
+    "pytest-reraise",
+    "flaky",
+    "mock",
+    "requests-mock",
+    "pytest-custom_exit_code",
+    "black==24.3.0",
+    "kubernetes>=18.20.0,<31.0.0",
+    "pytest-kind==22.11.1",
+    "pytest-lazy-fixture",
+    "psutil",
+    "opentelemetry-test-utils>=0.33b0",
+    "prometheus-api-client>=0.5.1",
+]
+
+[project.scripts]
+gptc = "gptc_cli:main"
+
+[dependency-groups]
+test = [
+    "scipy>=1.6.1",
+    "Pillow",
+    "pytest<8.0.0",
+    "pytest-timeout",
+    "pytest-mock",
+    "pytest-cov==3.0.0",
+    "coverage==6.2",
+    "pytest-repeat",
+    "pytest-asyncio<0.23.0",
+    "pytest-reraise",
+    "flaky",
+    "mock",
+    "requests-mock",
+    "pytest-custom_exit_code",
+    "black==24.3.0",
+    "kubernetes>=18.20.0,<31.0.0",
+    "pytest-kind==22.11.1",
+    "pytest-lazy-fixture",
     "psutil",
     "opentelemetry-test-utils>=0.33b0",
     "prometheus-api-client>=0.5.1",
 ]
 devel = [
     "pre-commit",
-    "setuptools<81",
     "watchfiles>=0.18.0",
     "strawberry-graphql>=0.96.0",
     "sgqlc",
@@ -69,10 +266,12 @@ dev = [
 
 [tool.uv]
 default-groups = ["dev"]
-exclude-dependencies = []
 constraint-dependencies = ["docarray>=0.16.4", "pydantic<2", "gptc-hubble-sdk==0.10.0"]
 
 [tool.uv.sources]
+
+[tool.setuptools.packages.find]
+include = ["gptc*", "gptc_cli*"]
 
 [tool.black]
 line-length = 88

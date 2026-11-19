@@ -1,3 +1,16 @@
+# DEPRECATED: setuptools/pyproject.toml no longer read this file.
+# All package dependency metadata now lives in pyproject.toml
+# ([project.dependencies] and [project.optional-dependencies]).
+#
+# The conda recipe generator (scripts/create-conda-recipe.py) still
+# consumes its tags for runtime requirements, so keep this file
+# editable until that generator migrates to pyproject.toml.
+#
+# check-metadata.py also validates tags here (core/perf/standard/all,
+# misspelled "standrad").
+#
+# Original header below (preserved for reference):
+#
 # GPTC PACKAGE DEPENDENCIES
 #
 # Essential: only 5, they are labeled with `core`: docarray, numpy, grpcio, protobuf, pyyaml. They will be installed
@@ -19,7 +32,8 @@
 #    For example, 'numpy>=0.4.1: numpy' is redundant
 # 3. Tag order doesn't matter; case-sensitive; duplicated tag will be ignored
 # 4. Tag `all` is reserved for representing all packages
-
+#
+#
 # AVAILABLE TAGS:
 # core < perf < standard < devel: these tags correspond to Docker image tag
 # test: required for **setting up test ENVIRONMENT**
@@ -44,7 +58,7 @@ opentelemetry-exporter-otlp>=1.12.0:  perf,standard,devel
 opentelemetry-exporter-prometheus>=0.33b0:  perf,standard,devel
 opentelemetry-instrumentation-aiohttp-client>=0.33b0:    perf,standard,devel
 opentelemetry-instrumentation-fastapi>=0.33b0: perf,standard,devel
-opentelemetry-exporter-otlp-proto-grpc>=1.13.0: perf,standrad,devel
+opentelemetry-exporter-otlp-proto-grpc>=1.13.0: perf,standard,devel
 fastapi>=0.76.0:            standard,devel
 uvicorn<=0.23.1:            standard,devel
 docker:                     standard,devel

@@ -618,12 +618,6 @@ jobs:
       matrix:
         include:
           # linux
-          - os: ubuntu-22.04
-            python: '3.8'
-            python-manylinux-tag: "cp38-cp38"
-          - os: ubuntu-latest
-            python: '3.9'
-            python-manylinux-tag: "cp39-cp39"
           - os: ubuntu-latest
             python: '3.10'
             python-manylinux-tag: "cp310-cp310"
@@ -632,18 +626,6 @@ jobs:
             python-manylinux-tag: "cp311-cp311"
 
           # MacOS emulated
-          - os: macos-latest
-            python: '3.8'
-            python-cibuildwheels: '38'
-            platform_id: macosx_x86_64
-            arch: x86_64
-            goarch: amd64
-          - os: macos-latest
-            python: '3.9'
-            python-cibuildwheels: '39'
-            platform_id: macosx_x86_64
-            arch: x86_64
-            goarch: amd64
           - os: macos-latest
             python: '3.10'
             python-cibuildwheels: '310'
@@ -658,18 +640,6 @@ jobs:
             goarch: amd64
 
           # MacOS native
-          - os: macos-latest
-            python: '3.8'
-            python-cibuildwheels: '38'
-            platform_id: macosx_arm64
-            arch: arm64
-            goarch: arm64
-          - os: macos-latest
-            python: '3.9'
-            python-cibuildwheels: '39'
-            platform_id: macosx_arm64
-            arch: arm64
-            goarch: arm64
           - os: macos-latest
             python: '3.10'
             python-cibuildwheels: '310'
@@ -815,7 +785,7 @@ jobs:
       matrix:
         core: ['', 'true']
         perf: ['', 'true']
-        python-version: ["3.9", "3.10", "3.11"]
+        python-version: ["3.10", "3.11"]
         exclude:
           - core: 'true'
             perf: 'true'

@@ -27,7 +27,7 @@ ENV PIP_NO_CACHE_DIR=1 \
     GPTC_PIP_INSTALL_CORE=${PIP_INSTALL_CORE} \
     GPTC_PIP_INSTALL_PERF=${PIP_INSTALL_PERF}
 
-COPY extra-requirements.txt setup.py /tmp/
+COPY extra-requirements.txt setup.py pyproject.toml /tmp/
 
 RUN cd /tmp/ && \
     if [ -n "${APT_PACKAGES}" ]; then apt-get update && \
