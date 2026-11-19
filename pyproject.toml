@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel", "setuptools-golang"]
+requires = ["setuptools>=84.1.0", "wheel", "setuptools-golang"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,7 +7,7 @@ name = "gptc"
 version = "1.0.1"
 description = "Multimodal AI services & pipelines with cloud-native stack: gRPC, Kubernetes, Docker, OpenTelemetry, Prometheus, Jaeger, etc."
 readme = "README.md"
-requires-python = ">=3.8,<3.14"
+requires-python = ">=3.10,<3.14"
 license = {text = "Apache 2.0"}
 authors = [{name = "GPT::C0MPUTΞR", email = "hello@khulnasoft.com"}]
 keywords = [
@@ -56,7 +56,7 @@ dependencies = [
     "protobuf>=5.29.6",
     "pydantic>=1.10.27",
     "pyyaml>=6.0.3",
-    "urllib3>=1.25.9,<2.0.0",
+    "urllib3>=2.8.0",
 ]
 
 [project.urls]
@@ -78,7 +78,7 @@ core = [
     "protobuf>=3.19.0",
     "pydantic<3.0.0",
     "pyyaml>=5.3.1",
-    "urllib3>=1.25.9,<2.0.0",
+    "urllib3>=2.8.0",
 ]
 perf = [
     "uvloop;platform_system!='Windows'",
@@ -153,7 +153,7 @@ all = [
     "protobuf>=3.19.0",
     "pydantic<3.0.0",
     "pyyaml>=5.3.1",
-    "urllib3>=1.25.9,<2.0.0",
+    "urllib3>=2.8.0",
     "uvloop;platform_system!='Windows'",
     "prometheus-client>=0.12.0",
     "opentelemetry-sdk>=1.14.0",
@@ -232,7 +232,6 @@ test = [
 ]
 devel = [
     "pre-commit",
-    "setuptools<81",
     "watchfiles>=0.18.0",
     "strawberry-graphql>=0.96.0",
     "sgqlc",
